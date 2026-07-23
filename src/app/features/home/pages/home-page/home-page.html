@@ -1,0 +1,34 @@
+<main class="relative isolate min-h-screen overflow-hidden bg-[#120b10]">
+  <div class="glow glow-one" aria-hidden="true"></div>
+  <div class="glow glow-two" aria-hidden="true"></div>
+
+  <section class="relative mx-auto flex min-h-screen max-w-6xl flex-col items-center
+                  justify-center px-6 py-24 text-center">
+    <p class="intro-item mb-5 text-xs font-semibold uppercase tracking-[0.35em] text-rose-300">
+      Our anniversary
+    </p>
+    <h1 class="intro-item max-w-4xl text-5xl font-semibold tracking-tight text-stone-50
+               sm:text-7xl lg:text-8xl">
+      A little corner of the internet, just for us.
+    </h1>
+    <p class="intro-item mt-7 max-w-2xl text-base leading-8 text-stone-300 sm:text-lg">
+      This is where our favourite moments, quiet adventures, and the story still
+      unfolding will live.
+    </p>
+    <div class="intro-item mt-10">
+      <app-romantic-button
+        label="Begin our story"
+        (pressed)="scrollToStory()"
+      />
+    </div>
+  </section>
+
+  <section id="our-story" class="mx-auto max-w-4xl px-6 py-28">
+    <p class="text-sm uppercase tracking-[0.3em] text-rose-300">Chapter one</p>
+    <h2 class="mt-4 text-4xl font-semibold text-stone-50">Our story starts here.</h2>
+    <p class="mt-5 max-w-2xl leading-8 text-stone-300">
+      Replace this starter copy with the moment you met, then grow the site one
+      memory at a time.
+    </p>
+  </section>
+</main>

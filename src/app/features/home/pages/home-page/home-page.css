@@ -1,0 +1,33 @@
+:host {
+  display: block;
+}
+
+.glow {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(90px);
+  opacity: 0.28;
+  pointer-events: none;
+}
+
+.glow-one {
+  width: 28rem;
+  height: 28rem;
+  top: -10rem;
+  left: -8rem;
+  background: #e11d48;
+}
+
+.glow-two {
+  width: 24rem;
+  height: 24rem;
+  right: -8rem;
+  bottom: 5rem;
+  background: #be185d;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    scroll-behavior: auto !important;
+  }
+}
