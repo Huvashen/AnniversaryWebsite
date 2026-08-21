@@ -1,12 +1,20 @@
-<main class="intro-screen running">
+<main class="intro-screen">
   <audio #introAudio preload="auto" src="/audio/netflix-intro.mp3"></audio>
-  <div class="streak-field" aria-hidden="true">
-    @for (streak of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]; track streak) {
-      <span class="light-streak"></span>
-    }
-  </div>
-  <div class="n-logo" aria-label="Netflix inspired intro">
-    <span class="n-segment n-left"></span><span class="n-segment n-diagonal"></span
+  <div class="n-logo" aria-label="Netflix inspired animated N">
+    <span class="n-segment n-left"></span><span class="n-fold n-fold-left"></span
+    ><span class="n-segment n-diagonal"></span><span class="n-fold n-fold-right"></span
     ><span class="n-segment n-right"></span>
+  </div>
+  <div class="intro-flash" aria-hidden="true"></div>
+  <div class="spectrum-field" aria-hidden="true">
+    @for (
+      streak of [
+        1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25,
+        26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40,
+      ];
+      track streak
+    ) {
+      <span class="spectrum-streak"></span>
+    }
   </div>
 </main>
