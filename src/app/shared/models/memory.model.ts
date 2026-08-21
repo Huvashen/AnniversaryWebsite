@@ -14,4 +14,8 @@ export interface Memory {
 }
 
 export type MemoryCategory = 'favourites' | 'chapters' | 'adventures' | 'quiet-moments';
-export interface MemoryRow { readonly id: MemoryCategory; readonly title: string; readonly memories: readonly Memory[]; }
+export interface MemoryRow {
+  readonly id: MemoryCategory;
+  readonly title: string;
+  readonly memories: readonly Memory[];
+}
