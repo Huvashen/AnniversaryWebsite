@@ -1,15 +1,38 @@
 <main id="home" class="browse-page">
   <app-site-header />
   <section class="hero" [style.--hero-accent]="featured.accent" aria-labelledby="hero-title">
-    <div class="hero-art" [style.background-image]="featured.imageUrl ? 'url(' + featured.imageUrl + ')' : null"></div><div class="hero-vignette"></div>
+    <div
+      class="hero-art"
+      [style.background-image]="featured.imageUrl ? 'url(' + featured.imageUrl + ')' : null"
+    ></div>
+    <div class="hero-vignette"></div>
     <div class="hero-content">
-      <p class="hero-item eyebrow"><b>N</b><span>Our original story</span></p><p class="hero-item chapter">{{featured.date}} · {{featured.eyebrow}}</p>
-      <h1 id="hero-title" class="hero-item">{{featured.title}}</h1><p class="hero-item synopsis">{{featured.description}}</p>
-      <div class="hero-item actions"><button class="primary" type="button" (click)="openMemory(featured)">▶ Play our story</button><button class="secondary" type="button" (click)="scrollToMemories()">ⓘ More memories</button></div>
-    </div><div class="scroll-cue">Scroll to explore ↓</div>
+      <p class="hero-item eyebrow"><b>N</b><span>Our original story</span></p>
+      <p class="hero-item chapter">{{ featured.date }} · {{ featured.eyebrow }}</p>
+      <h1 id="hero-title" class="hero-item">{{ featured.title }}</h1>
+      <p class="hero-item synopsis">{{ featured.description }}</p>
+      <div class="hero-item actions">
+        <button class="primary" type="button" (click)="openMemory(featured)">
+          ▶ Play our story</button
+        ><button class="secondary" type="button" (click)="scrollToMemories()">
+          ⓘ More memories
+        </button>
+      </div>
+    </div>
+    <div class="scroll-cue">Scroll to explore ↓</div>
   </section>
-  <section id="memories" class="catalogue" aria-label="Our memory collection">@for(row of rows;track row.id){<app-memory-row [row]="row" (memorySelected)="openMemory($event)"/>}</section>
-  <section id="coming-soon" class="coming-soon"><p>Coming next</p><h2>The best episodes have not happened yet.</h2><span>New memories added as we make them.</span></section>
+  <section id="memories" class="catalogue" aria-label="Our memory collection">
+    @for (row of rows; track row.id) {
+      <app-memory-row [row]="row" (memorySelected)="openMemory($event)" />
+    }
+  </section>
+  <section id="coming-soon" class="coming-soon">
+    <p>Coming next</p>
+    <h2>The best episodes have not happened yet.</h2>
+    <span>New memories added as we make them.</span>
+  </section>
   <footer>Our Story · A private collection made for two</footer>
-  @if(selectedMemory();as memory){<app-memory-viewer [memory]="memory" (closed)="closeMemory()"/>}
+  @if (selectedMemory(); as memory) {
+    <app-memory-viewer [memory]="memory" (closed)="closeMemory()" />
+  }
 </main>

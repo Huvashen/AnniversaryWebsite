@@ -14,9 +14,7 @@ export const routes: Routes = [
     path: 'browse',
     canActivate: [accessGuard],
     loadComponent: () =>
-      import('./features/home/pages/home-page/home-page').then(
-        (module) => module.HomePage,
-      ),
+      import('./features/home/pages/home-page/home-page').then((module) => module.HomePage),
     title: 'Our Anniversary',
   },
   { path: '', pathMatch: 'full', redirectTo: 'welcome' },

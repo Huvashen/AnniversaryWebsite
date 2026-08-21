@@ -1,4 +1,6 @@
-:host { display: block; }
+:host {
+  display: block;
+}
 
 .entrance-shell {
   position: relative;
@@ -102,15 +104,28 @@ h1 {
   border-radius: 0.4rem;
   background: linear-gradient(145deg, #e50914, #5e0710);
   box-shadow: 0 1.5rem 4rem rgb(0 0 0 / 0.38);
-  transition: border-color 180ms ease, transform 180ms ease;
+  transition:
+    border-color 180ms ease,
+    transform 180ms ease;
 }
 
-.heart { font-size: clamp(2.8rem, 8vw, 4.5rem); filter: drop-shadow(0 0.5rem 0.75rem rgb(0 0 0 / 0.22)); }
-.profile-name { font-size: 1rem; transition: color 180ms ease; }
+.heart {
+  font-size: clamp(2.8rem, 8vw, 4.5rem);
+  filter: drop-shadow(0 0.5rem 0.75rem rgb(0 0 0 / 0.22));
+}
+.profile-name {
+  font-size: 1rem;
+  transition: color 180ms ease;
+}
 .profile:hover .profile-art,
-.profile:focus-visible .profile-art { border-color: #f7f3f4; transform: translateY(-0.25rem); }
+.profile:focus-visible .profile-art {
+  border-color: #f7f3f4;
+  transform: translateY(-0.25rem);
+}
 .profile:hover .profile-name,
-.profile:focus-visible .profile-name { color: #fff; }
+.profile:focus-visible .profile-name {
+  color: #fff;
+}
 
 .passcode-panel {
   width: min(100%, 31rem);
@@ -131,8 +146,16 @@ h1 {
   cursor: pointer;
 }
 
-label { display: block; margin-bottom: 0.65rem; color: #f1edef; font-weight: 600; }
-.passcode-row { display: flex; gap: 0.65rem; }
+label {
+  display: block;
+  margin-bottom: 0.65rem;
+  color: #f1edef;
+  font-weight: 600;
+}
+.passcode-row {
+  display: flex;
+  gap: 0.65rem;
+}
 input {
   min-width: 0;
   flex: 1;
@@ -143,7 +166,10 @@ input {
   color: #fff;
   padding: 0.85rem 1rem;
 }
-input:focus { border-color: #f1edef; box-shadow: 0 0 0 3px rgb(255 255 255 / 0.08); }
+input:focus {
+  border-color: #f1edef;
+  box-shadow: 0 0 0 3px rgb(255 255 255 / 0.08);
+}
 .passcode-row button {
   border: 0;
   border-radius: 0.3rem;
@@ -154,17 +180,48 @@ input:focus { border-color: #f1edef; box-shadow: 0 0 0 3px rgb(255 255 255 / 0.0
   cursor: pointer;
 }
 .hint,
-.error { margin: 0.8rem 0 0; font-size: 0.78rem; }
-.hint { color: #777073; }
-.error { color: #ff7880; }
+.error {
+  margin: 0.8rem 0 0;
+  font-size: 0.78rem;
+}
+.hint {
+  color: #777073;
+}
+.error {
+  color: #ff7880;
+}
 
-.entrance-footer { justify-content: center; padding-bottom: 1.5rem; }
-.ambient { position: absolute; width: 28rem; aspect-ratio: 1; border-radius: 50%; filter: blur(8rem); opacity: 0.15; }
-.ambient-left { top: -14rem; left: -10rem; background: #e50914; }
-.ambient-right { right: -12rem; bottom: -16rem; background: #9d3450; }
+.entrance-footer {
+  justify-content: center;
+  padding-bottom: 1.5rem;
+}
+.ambient {
+  position: absolute;
+  width: 28rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  filter: blur(8rem);
+  opacity: 0.15;
+}
+.ambient-left {
+  top: -14rem;
+  left: -10rem;
+  background: #e50914;
+}
+.ambient-right {
+  right: -12rem;
+  bottom: -16rem;
+  background: #9d3450;
+}
 
 @media (max-width: 520px) {
-  .private-label { display: none; }
-  .passcode-row { flex-direction: column; }
-  .passcode-row button { width: 100%; }
+  .private-label {
+    display: none;
+  }
+  .passcode-row {
+    flex-direction: column;
+  }
+  .passcode-row button {
+    width: 100%;
+  }
 }
