@@ -32,50 +32,34 @@ export class AnimationService {
   playCinematicIntro(): void {
     if (globalThis.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return;
 
-    animate('.n-left', {
+    animate('.n-image-frame', {
       opacity: { from: 0, to: 1 },
-      scaleY: { from: 0, to: 1 },
-      duration: 430,
+      scale: { from: 0.82, to: 1 },
+      duration: 820,
       ease: 'out(4)',
     });
-    animate('.n-diagonal', {
-      opacity: { from: 0, to: 1 },
-      scaleY: { from: 0, to: 1 },
-      delay: 320,
-      duration: 620,
+    animate('.n-image', {
+      filter: [
+        'brightness(0.35) drop-shadow(0 0 0 #e50914)',
+        'brightness(1.35) drop-shadow(0 0 26px #e50914)',
+        'brightness(1) drop-shadow(0 0 8px #e50914)',
+      ],
+      scale: [0.96, 1.035, 1],
+      duration: 1450,
       ease: 'out(4)',
-    });
-    animate('.n-right', {
-      opacity: { from: 0, to: 1 },
-      scaleY: { from: 0, to: 1 },
-      delay: 760,
-      duration: 430,
-      ease: 'out(4)',
-    });
-    animate('.n-shine', {
-      opacity: [0, 0.9, 0],
-      y: { from: '-120%', to: '240%' },
-      delay: 820,
-      duration: 950,
-      ease: 'inOut(3)',
     });
     animate('.red-halo', {
-      opacity: [0, 0.38, 0.12],
-      scale: { from: 0.4, to: 1.2 },
-      delay: 1050,
-      duration: 1250,
-      ease: 'out(3)',
-    });
-    animate('.n-logo', {
-      scale: [0.96, 1.03, 1],
-      filter: [
-        'drop-shadow(0 0 0 #e50914)',
-        'drop-shadow(0 0 24px #e50914)',
-        'drop-shadow(0 0 8px #e50914)',
-      ],
-      delay: 980,
+      opacity: [0, 0.32, 0.08],
+      scale: { from: 0.35, to: 1.15 },
+      delay: 680,
       duration: 1450,
       ease: 'out(3)',
+    });
+    animate('.n-image-frame', {
+      scale: { from: 1, to: 1.13 },
+      delay: 1650,
+      duration: 1150,
+      ease: 'inOut(3)',
     });
     animate('.intro-screen', {
       opacity: { from: 1, to: 0 },
