@@ -1,0 +1,52 @@
+<main class="entrance-shell">
+  <div class="ambient ambient-left" aria-hidden="true"></div>
+  <div class="ambient ambient-right" aria-hidden="true"></div>
+
+  <header class="entrance-header entrance-reveal">
+    <a class="wordmark" href="/welcome" aria-label="Our Story home">OUR STORY</a>
+    <span class="private-label">Private collection</span>
+  </header>
+
+  <section class="entrance-content" aria-labelledby="entrance-title">
+    <p class="eyebrow entrance-reveal">{{ content.eyebrow }}</p>
+    <h1 id="entrance-title" class="entrance-reveal">{{ content.title }}</h1>
+    <p class="subtitle entrance-reveal">{{ content.description }}</p>
+
+    @if (!profileSelected()) {
+      <button class="profile entrance-reveal" type="button" (click)="selectProfile()">
+        <span class="profile-art" aria-hidden="true">
+          <span class="heart">♥</span>
+        </span>
+        <span class="profile-name">{{ content.profileName }}</span>
+      </button>
+    } @else {
+      <form class="passcode-panel" (ngSubmit)="enterStory()">
+        <button class="back-button" type="button" (click)="profileSelected.set(false)">
+          <span aria-hidden="true">←</span> Profiles
+        </button>
+        <label for="passcode">Enter our secret word</label>
+        <div class="passcode-row">
+          <input
+            #passcodeInput
+            id="passcode"
+            name="passcode"
+            type="password"
+            autocomplete="current-password"
+            [(ngModel)]="passcode"
+            [attr.aria-invalid]="errorMessage() ? true : null"
+            [attr.aria-describedby]="errorMessage() ? 'passcode-error' : 'passcode-hint'"
+          />
+          <button type="submit">Enter</button>
+        </div>
+        <p id="passcode-hint" class="hint">{{ content.passcodeHint }}</p>
+        @if (errorMessage()) {
+          <p id="passcode-error" class="error" role="alert">{{ errorMessage() }}</p>
+        }
+      </form>
+    }
+  </section>
+
+  <footer class="entrance-footer entrance-reveal">
+    Made with every favourite memory in mind.
+  </footer>
+</main>
