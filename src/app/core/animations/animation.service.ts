@@ -32,27 +32,71 @@ export class AnimationService {
   playCinematicIntro(): void {
     if (globalThis.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return;
 
-    animate('.light-streak', {
-      scaleX: { from: 0, to: 1 },
+    animate('.n-left', {
       opacity: { from: 0, to: 1 },
-      delay: stagger(45),
-      duration: 680,
-      ease: 'inOut(4)',
+      scaleY: { from: 0, to: 1 },
+      duration: 360,
+      ease: 'out(4)',
     });
-    animate('.n-segment', {
+    animate('.n-diagonal, .n-fold', {
       opacity: { from: 0, to: 1 },
-      scaleY: { from: 0.05, to: 1 },
-      filter: { from: 'brightness(4)', to: 'brightness(1)' },
-      delay: stagger(180, { start: 240 }),
-      duration: 820,
+      scaleY: { from: 0, to: 1 },
+      delay: stagger(55, { start: 280 }),
+      duration: 520,
+      ease: 'out(4)',
+    });
+    animate('.n-right', {
+      opacity: { from: 0, to: 1 },
+      scaleY: { from: 0, to: 1 },
+      delay: 620,
+      duration: 390,
       ease: 'out(4)',
     });
     animate('.n-logo', {
-      scale: { from: 0.88, to: 1.08 },
-      filter: { from: 'drop-shadow(0 0 0 #e50914)', to: 'drop-shadow(0 0 28px #e50914)' },
-      delay: 950,
-      duration: 1400,
-      ease: 'out(3)',
+      filter: { from: 'drop-shadow(0 0 0 #e50914)', to: 'drop-shadow(0 0 25px #e50914)' },
+      delay: 760,
+      duration: 580,
+      ease: 'out(4)',
+    });
+    animate('.intro-flash', {
+      opacity: [0, 0.72, 0],
+      delay: 1260,
+      duration: 650,
+      ease: 'inOut(3)',
+    });
+    animate('.n-logo', {
+      scale: { from: 1, to: 14 },
+      opacity: [1, 1, 0],
+      delay: 1420,
+      duration: 1050,
+      ease: 'in(4)',
+    });
+    animate('.spectrum-field', {
+      opacity: { from: 0, to: 1 },
+      delay: 1520,
+      duration: 260,
+      ease: 'linear',
+    });
+    animate('.spectrum-streak', {
+      opacity: { from: 0, to: 1 },
+      scaleY: { from: 0.04, to: 1 },
+      delay: stagger(13, { start: 1540, from: 'center' }),
+      duration: 560,
+      ease: 'out(4)',
+    });
+    animate('.spectrum-field', {
+      scaleX: { from: 1, to: 1.85 },
+      filter: { from: 'blur(0px)', to: 'blur(10px)' },
+      opacity: { from: 1, to: 0 },
+      delay: 2600,
+      duration: 980,
+      ease: 'in(3)',
+    });
+    animate('.intro-screen', {
+      opacity: { from: 1, to: 0 },
+      delay: 3460,
+      duration: 460,
+      ease: 'in(3)',
     });
   }
 

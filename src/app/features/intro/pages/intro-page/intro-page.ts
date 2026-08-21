@@ -34,6 +34,6 @@ export class IntroPage implements AfterViewInit {
     setTimeout(() => {
       this.introState.markComplete();
       void this.router.navigate(['/welcome']);
-    }, 3900);
+    }, 4050);
   }
 }
