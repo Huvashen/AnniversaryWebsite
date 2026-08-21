@@ -70,29 +70,6 @@
   opacity: 0;
   transform-origin: center;
 }
-.sound-gate {
-  position: absolute;
-  z-index: 5;
-  display: flex;
-  width: min(85%, 15rem);
-  flex-direction: column;
-  gap: 0.55rem;
-}
-.sound-gate button {
-  width: 100%;
-  border: 0;
-  border-radius: 0.2rem;
-  background: #e50914;
-  color: #fff;
-  padding: 0.8rem 1rem;
-  font-weight: 700;
-  cursor: pointer;
-}
-.sound-gate .muted {
-  background: transparent;
-  color: #777;
-  font-size: 0.75rem;
-}
 @media (prefers-reduced-motion: reduce) {
   .n-segment {
     opacity: 1;

@@ -4,7 +4,6 @@ import {
   Component,
   ElementRef,
   inject,
-  signal,
   viewChild,
 } from '@angular/core';
 import { Router } from '@angular/router';
@@ -22,41 +21,15 @@ export class IntroPage implements AfterViewInit {
   private readonly router = inject(Router);
   private readonly introState = inject(IntroStateService);
   private readonly audio = viewChild<ElementRef<HTMLAudioElement>>('introAudio');
-  readonly needsInteraction = signal(false);
-  readonly started = signal(false);
-
   ngAfterViewInit(): void {
-    setTimeout(() => this.tryAutoplay());
-  }
-  beginWithSound(): void {
     const audio = this.audio()?.nativeElement;
-    if (!audio) {
-      this.runIntro();
-      return;
+    if (audio) {
+      void audio.play().catch(() => undefined);
     }
-    void audio
-      .play()
-      .then(() => this.runIntro())
-      .catch(() => this.runIntro());
-  }
-  continueMuted(): void {
     this.runIntro();
   }
-  private tryAutoplay(): void {
-    const audio = this.audio()?.nativeElement;
-    if (!audio) {
-      this.runIntro();
-      return;
-    }
-    void audio
-      .play()
-      .then(() => this.runIntro())
-      .catch(() => this.needsInteraction.set(true));
-  }
+
   private runIntro(): void {
-    if (this.started()) return;
-    this.started.set(true);
-    this.needsInteraction.set(false);
     setTimeout(() => this.animations.playCinematicIntro());
     setTimeout(() => {
       this.introState.markComplete();
