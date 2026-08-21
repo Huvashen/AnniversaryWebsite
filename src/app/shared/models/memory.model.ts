@@ -8,6 +8,7 @@ export interface Memory {
   readonly accent: string;
   readonly duration?: string;
   readonly imageUrl?: string;
+  readonly galleryUrls?: readonly string[];
   readonly videoUrl?: string;
   readonly featured?: boolean;
 }

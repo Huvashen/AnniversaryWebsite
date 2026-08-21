@@ -11,10 +11,5 @@
   <section id="memories" class="catalogue" aria-label="Our memory collection">@for(row of rows;track row.id){<app-memory-row [row]="row" (memorySelected)="openMemory($event)"/>}</section>
   <section id="coming-soon" class="coming-soon"><p>Coming next</p><h2>The best episodes have not happened yet.</h2><span>New memories added as we make them.</span></section>
   <footer>Our Story · A private collection made for two</footer>
-  @if(selectedMemory();as memory){
-    <div class="modal-backdrop" role="presentation" (click)="closeMemory()"><article class="memory-modal" role="dialog" aria-modal="true" [attr.aria-labelledby]="memory.id+'-modal-title'" (click)="$event.stopPropagation()">
-      <button class="close" type="button" aria-label="Close memory" (click)="closeMemory()">×</button><div class="modal-art" [style.--modal-accent]="memory.accent" [style.background-image]="memory.imageUrl ? 'url(' + memory.imageUrl + ')' : null"><span>▶</span></div>
-      <div class="modal-copy"><p>{{memory.eyebrow}} · {{memory.date}}</p><h2 [id]="memory.id+'-modal-title'">{{memory.title}}</h2><span>{{memory.description}}</span><small>Personal photos and video will appear here when added to the media catalogue.</small></div>
-    </article></div>
-  }
+  @if(selectedMemory();as memory){<app-memory-viewer [memory]="memory" (closed)="closeMemory()"/>}
 </main>
