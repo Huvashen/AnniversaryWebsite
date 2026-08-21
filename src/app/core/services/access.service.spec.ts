@@ -15,9 +15,14 @@ describe('AccessService', () => {
 
   it('unlocks and locks the experience', () => {
     const service = TestBed.inject(AccessService);
-    expect(service.unlock('forever')).toBe(true);
+    expect(service.unlock('12/10/2025')).toBe(true);
     expect(service.isUnlocked()).toBe(true);
     service.lock();
     expect(service.isUnlocked()).toBe(false);
+  });
+
+  it('accepts the date with or without separators', () => {
+    const service = TestBed.inject(AccessService);
+    expect(service.unlock('12102025')).toBe(true);
   });
 });
