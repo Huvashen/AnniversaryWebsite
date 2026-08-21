@@ -1,4 +1,4 @@
-<main class="intro-screen" [class.running]="started()">
+<main class="intro-screen running">
   <audio #introAudio preload="auto" src="/audio/netflix-intro.mp3"></audio>
   <div class="streak-field" aria-hidden="true">
     @for (streak of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]; track streak) {
@@ -9,10 +9,4 @@
     <span class="n-segment n-left"></span><span class="n-segment n-diagonal"></span
     ><span class="n-segment n-right"></span>
   </div>
-  @if (needsInteraction()) {
-    <section class="sound-gate">
-      <button type="button" (click)="beginWithSound()">Play intro</button
-      ><button class="muted" type="button" (click)="continueMuted()">Continue muted</button>
-    </section>
-  }
 </main>
