@@ -1,0 +1,170 @@
+:host { display: block; }
+
+.entrance-shell {
+  position: relative;
+  display: grid;
+  min-height: 100svh;
+  grid-template-rows: auto 1fr auto;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 45%, rgb(95 21 38 / 0.24), transparent 34rem),
+    linear-gradient(145deg, #080808, #12090c 58%, #080808);
+}
+
+.entrance-shell::before {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgb(255 255 255 / 0.018) 1px, transparent 1px);
+  background-size: 100% 5px;
+  content: '';
+  pointer-events: none;
+}
+
+.entrance-header,
+.entrance-footer {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem clamp(1.25rem, 5vw, 5rem);
+}
+
+.wordmark {
+  color: #e50914;
+  font-size: clamp(1.25rem, 3vw, 2rem);
+  font-weight: 900;
+  letter-spacing: -0.08em;
+  text-decoration: none;
+  text-shadow: 0 0 1.5rem rgb(229 9 20 / 0.3);
+}
+
+.private-label,
+.entrance-footer {
+  color: #8e8588;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.entrance-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1.25rem;
+  text-align: center;
+}
+
+.eyebrow {
+  margin: 0 0 1rem;
+  color: #e8a2ad;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+
+h1 {
+  margin: 0;
+  color: #f7f3f4;
+  font-size: clamp(2.6rem, 8vw, 5.8rem);
+  font-weight: 500;
+  letter-spacing: -0.055em;
+  line-height: 0.96;
+}
+
+.subtitle {
+  max-width: 35rem;
+  margin: 1.25rem 0 2.75rem;
+  color: #b7afb1;
+  font-size: clamp(0.95rem, 2vw, 1.15rem);
+}
+
+.profile {
+  display: grid;
+  gap: 0.9rem;
+  border: 0;
+  background: transparent;
+  color: #b7afb1;
+  cursor: pointer;
+}
+
+.profile-art {
+  display: grid;
+  width: clamp(7.5rem, 20vw, 10.5rem);
+  aspect-ratio: 1;
+  place-items: center;
+  overflow: hidden;
+  border: 3px solid transparent;
+  border-radius: 0.4rem;
+  background: linear-gradient(145deg, #e50914, #5e0710);
+  box-shadow: 0 1.5rem 4rem rgb(0 0 0 / 0.38);
+  transition: border-color 180ms ease, transform 180ms ease;
+}
+
+.heart { font-size: clamp(2.8rem, 8vw, 4.5rem); filter: drop-shadow(0 0.5rem 0.75rem rgb(0 0 0 / 0.22)); }
+.profile-name { font-size: 1rem; transition: color 180ms ease; }
+.profile:hover .profile-art,
+.profile:focus-visible .profile-art { border-color: #f7f3f4; transform: translateY(-0.25rem); }
+.profile:hover .profile-name,
+.profile:focus-visible .profile-name { color: #fff; }
+
+.passcode-panel {
+  width: min(100%, 31rem);
+  padding: 1.5rem;
+  border: 1px solid rgb(255 255 255 / 0.1);
+  border-radius: 0.75rem;
+  background: rgb(12 12 12 / 0.78);
+  box-shadow: 0 2rem 6rem rgb(0 0 0 / 0.42);
+  text-align: left;
+  backdrop-filter: blur(18px);
+}
+
+.back-button {
+  margin-bottom: 1.5rem;
+  border: 0;
+  background: none;
+  color: #aaa2a4;
+  cursor: pointer;
+}
+
+label { display: block; margin-bottom: 0.65rem; color: #f1edef; font-weight: 600; }
+.passcode-row { display: flex; gap: 0.65rem; }
+input {
+  min-width: 0;
+  flex: 1;
+  border: 1px solid #575154;
+  border-radius: 0.3rem;
+  outline: none;
+  background: #171416;
+  color: #fff;
+  padding: 0.85rem 1rem;
+}
+input:focus { border-color: #f1edef; box-shadow: 0 0 0 3px rgb(255 255 255 / 0.08); }
+.passcode-row button {
+  border: 0;
+  border-radius: 0.3rem;
+  background: #e50914;
+  color: #fff;
+  padding: 0.85rem 1.3rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+.hint,
+.error { margin: 0.8rem 0 0; font-size: 0.78rem; }
+.hint { color: #777073; }
+.error { color: #ff7880; }
+
+.entrance-footer { justify-content: center; padding-bottom: 1.5rem; }
+.ambient { position: absolute; width: 28rem; aspect-ratio: 1; border-radius: 50%; filter: blur(8rem); opacity: 0.15; }
+.ambient-left { top: -14rem; left: -10rem; background: #e50914; }
+.ambient-right { right: -12rem; bottom: -16rem; background: #9d3450; }
+
+@media (max-width: 520px) {
+  .private-label { display: none; }
+  .passcode-row { flex-direction: column; }
+  .passcode-row button { width: 100%; }
+}
