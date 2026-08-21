@@ -1,145 +1,108 @@
 :host {
   display: block;
 }
-.entrance-shell {
+.signin-page {
   position: relative;
   display: grid;
   min-height: 100svh;
-  grid-template-rows: auto 1fr auto;
+  place-items: center;
   overflow: hidden;
-  background:
-    radial-gradient(circle at 50% 40%, #65162545, transparent 32rem),
-    linear-gradient(145deg, #080808, #12090c 58%, #080808);
+  background: #000;
   color: #fff;
 }
-.entrance-shell:before {
+.backdrop {
   position: absolute;
   inset: 0;
-  background-image: linear-gradient(#ffffff08 1px, transparent 1px);
-  background-size: 100% 5px;
+  background:
+    linear-gradient(#0009, #000a),
+    url('/images/couple-cinematic.png') center/cover no-repeat;
+}
+.backdrop:after {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, #0008, transparent 50%, #0005);
   content: '';
-  pointer-events: none;
 }
-.entrance-header {
-  position: relative;
+header {
+  position: absolute;
   z-index: 2;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1.5rem clamp(1.25rem, 5vw, 5rem);
+  inset: 0 0 auto;
+  padding: 1.5rem clamp(1.25rem, 4vw, 3.5rem);
 }
-.entrance-header span,
-footer {
-  color: #8e8588;
-  font-size: 0.7rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-}
-.wordmark {
+.brand {
   color: #e50914;
-  font-size: clamp(1.25rem, 3vw, 2rem);
-  font-weight: 900;
+  font-size: clamp(1.7rem, 4vw, 2.8rem);
+  font-weight: 950;
   letter-spacing: -0.08em;
-  text-decoration: none;
 }
-.login-card {
+.signin-card {
   position: relative;
-  z-index: 2;
-  align-self: center;
-  width: min(calc(100% - 2rem), 30rem);
-  margin: auto;
-  padding: clamp(1.5rem, 5vw, 2.8rem);
-  border: 1px solid #ffffff1a;
-  border-radius: 0.7rem;
-  background: #0b0b0be8;
-  box-shadow: 0 2rem 7rem #0009;
-  text-align: center;
-  backdrop-filter: blur(18px);
+  z-index: 3;
+  width: min(calc(100% - 2rem), 28rem);
+  padding: clamp(2rem, 5vw, 3.5rem);
+  border-radius: 0.25rem;
+  background: #000d;
+  box-shadow: 0 1rem 4rem #0008;
 }
-.profile-art {
-  display: grid;
-  width: 5rem;
-  aspect-ratio: 1;
-  place-items: center;
-  margin: 0 auto 1.5rem;
-  border-radius: 0.35rem;
-  background: linear-gradient(145deg, #e50914, #650710);
-  font-size: 2.1rem;
-  box-shadow: 0 1rem 3rem #0008;
+.signin-card h1 {
+  margin: 0 0 1rem;
+  font-size: 2rem;
 }
-.eyebrow {
-  margin: 0;
-  color: #df8e9b;
-  font-size: 0.65rem;
-  font-weight: 800;
-  letter-spacing: 0.19em;
-  text-transform: uppercase;
-}
-h1 {
-  margin: 0.55rem 0 0.75rem;
-  font-size: clamp(2rem, 6vw, 3.25rem);
-  letter-spacing: -0.05em;
-  line-height: 1;
-}
-.description {
-  margin: 0 auto 1.8rem;
-  color: #9d9698;
-  line-height: 1.55;
+.signin-card > p {
+  margin: 0 0 1rem;
+  color: #ddd;
+  font-size: 0.95rem;
 }
 form {
-  text-align: left;
-}
-label {
-  display: block;
-  margin-bottom: 0.55rem;
-  color: #e6e0e2;
-  font-size: 0.8rem;
-  font-weight: 700;
+  display: flex;
+  flex-direction: column;
 }
 input {
   width: 100%;
-  border: 1px solid #5d5658;
-  border-radius: 0.3rem;
+  border: 0;
+  border-radius: 0.2rem;
   outline: 0;
-  background: #171416;
+  background: #333;
   color: #fff;
-  padding: 0.9rem 1rem;
-  letter-spacing: 0.08em;
+  padding: 1rem;
 }
 input:focus {
-  border-color: #fff;
-  box-shadow: 0 0 0 3px #ffffff14;
+  background: #454545;
+  box-shadow: inset 0 -2px #e87c03;
 }
-.enter-button,
-.hint-button {
-  width: 100%;
+.signin-button {
+  margin-top: 1.5rem;
   border: 0;
-  border-radius: 0.3rem;
-  cursor: pointer;
-}
-.enter-button {
-  margin-top: 1rem;
+  border-radius: 0.2rem;
   background: #e50914;
   color: #fff;
   padding: 0.9rem;
-  font-weight: 750;
+  font-weight: 700;
+  cursor: pointer;
 }
-.hint-button {
-  margin-top: 0.55rem;
+.hint-link {
+  align-self: flex-end;
+  margin-top: 0.8rem;
+  border: 0;
   background: transparent;
-  color: #aaa3a5;
-  padding: 0.65rem;
+  color: #b3b3b3;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+.hint-link:hover {
+  text-decoration: underline;
 }
 .error {
-  margin: 0.65rem 0 0;
-  color: #ff727a;
-  font-size: 0.76rem;
+  margin: 0.6rem 0 0;
+  color: #e87c03;
+  font-size: 0.78rem;
 }
-footer {
-  position: relative;
-  z-index: 2;
-  padding: 1.5rem;
-  text-align: center;
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
 }
 .hint-backdrop {
   position: fixed;
@@ -149,58 +112,44 @@ footer {
   place-items: center;
   padding: 1rem;
   background: #000c;
-  backdrop-filter: blur(9px);
 }
 .hint-modal {
   position: relative;
-  width: min(100%, 28rem);
-  padding: 2.5rem;
-  border: 1px solid #ffffff1f;
-  border-radius: 0.7rem;
-  background: radial-gradient(circle at 80% 0, #e5091429, transparent 14rem), #171415;
-  box-shadow: 0 2rem 7rem #000;
+  width: min(100%, 26rem);
+  padding: 3rem 2rem;
+  border-radius: 0.25rem;
+  background: #181818;
+  box-shadow: 0 2rem 6rem #000;
   text-align: center;
 }
-.hint-modal button {
-  position: absolute;
-  top: 0.7rem;
-  right: 0.7rem;
-  display: grid;
-  width: 2rem;
-  aspect-ratio: 1;
-  place-items: center;
-  border: 0;
-  border-radius: 50%;
-  background: #2c2829;
-  color: #fff;
-  cursor: pointer;
-  font-size: 1.3rem;
-}
-.hint-modal p {
-  margin: 0;
-  color: #e50914;
-  font-size: 0.65rem;
-  font-weight: 800;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-}
 .hint-modal h2 {
-  margin: 0.7rem 0;
-  font-size: clamp(1.6rem, 5vw, 2.4rem);
-  letter-spacing: -0.04em;
+  margin: 0;
+  font-size: 1.45rem;
 }
-.hint-modal span {
-  color: #91898b;
-  font-size: 0.86rem;
+.modal-close {
+  position: absolute;
+  top: 0.65rem;
+  right: 0.65rem;
+  border: 0;
+  background: transparent;
+  color: #aaa;
+  cursor: pointer;
+  font-size: 1.6rem;
 }
-@media (max-width: 520px) {
-  .entrance-header span {
-    display: none;
+@media (max-width: 560px) {
+  .signin-page {
+    place-items: end center;
   }
-  .login-card {
-    padding: 1.5rem;
+  .signin-card {
+    width: 100%;
+    padding: 2rem 1.5rem 4rem;
+    background: #000;
+    border-radius: 0;
   }
-  .profile-art {
-    width: 4.25rem;
+  .backdrop {
+    opacity: 0.38;
+  }
+  header {
+    background: linear-gradient(#000, transparent);
   }
 }

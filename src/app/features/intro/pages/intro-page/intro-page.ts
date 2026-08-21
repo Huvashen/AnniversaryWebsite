@@ -9,6 +9,7 @@ import {
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { AnimationService } from '../../../../core/animations/animation.service';
+import { IntroStateService } from '../../../../core/services/intro-state.service';
 
 @Component({
   selector: 'app-intro-page',
@@ -19,6 +20,7 @@ import { AnimationService } from '../../../../core/animations/animation.service'
 export class IntroPage implements AfterViewInit {
   private readonly animations = inject(AnimationService);
   private readonly router = inject(Router);
+  private readonly introState = inject(IntroStateService);
   private readonly audio = viewChild<ElementRef<HTMLAudioElement>>('introAudio');
   readonly needsInteraction = signal(false);
   readonly started = signal(false);
@@ -56,6 +58,9 @@ export class IntroPage implements AfterViewInit {
     this.started.set(true);
     this.needsInteraction.set(false);
     setTimeout(() => this.animations.playCinematicIntro());
-    setTimeout(() => void this.router.navigate(['/welcome']), 3900);
+    setTimeout(() => {
+      this.introState.markComplete();
+      void this.router.navigate(['/welcome']);
+    }, 3900);
   }
 }

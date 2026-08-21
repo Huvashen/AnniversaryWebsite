@@ -1,21 +1,18 @@
 <main class="intro-screen" [class.running]="started()">
   <audio #introAudio preload="auto" src="/audio/netflix-intro.mp3"></audio>
-  <div class="beam-field" aria-hidden="true">
-    @for (beam of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]; track beam) {
-      <span class="intro-beam"></span>
+  <div class="streak-field" aria-hidden="true">
+    @for (streak of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]; track streak) {
+      <span class="light-streak"></span>
     }
   </div>
-  <div class="intro-wordmark" aria-label="Our Story">
-    @for (letter of ['O', 'U', 'R', 'S', 'T', 'O', 'R', 'Y']; track $index) {
-      <span class="intro-letter" [class.gap]="$index === 3">{{ letter }}</span>
-    }
+  <div class="n-logo" aria-label="Netflix inspired intro">
+    <span class="n-segment n-left"></span><span class="n-segment n-diagonal"></span
+    ><span class="n-segment n-right"></span>
   </div>
   @if (needsInteraction()) {
     <section class="sound-gate">
-      <p>A private premiere</p>
-      <h1>Our story is ready.</h1>
-      <button type="button" (click)="beginWithSound()">Begin with sound</button
-      ><button class="muted" type="button" (click)="continueMuted()">Continue without sound</button>
+      <button type="button" (click)="beginWithSound()">Play intro</button
+      ><button class="muted" type="button" (click)="continueMuted()">Continue muted</button>
     </section>
   }
 </main>
