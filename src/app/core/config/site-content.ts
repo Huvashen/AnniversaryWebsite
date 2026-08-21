@@ -5,6 +5,6 @@ export const SITE_CONTENT = {
     title: 'When did we start dating?',
     description: 'Enter the date that started our favourite story.',
     passcode: '12102025',
-    passcodeHint: 'The day of the Travis Scott concert.',
+    passcodeHint: 'The day after the Travis Scott concert.',
   },
 } as const;
