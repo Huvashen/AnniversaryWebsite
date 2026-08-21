@@ -1,34 +1,20 @@
-<main class="relative isolate min-h-screen overflow-hidden bg-[#120b10]">
-  <div class="glow glow-one" aria-hidden="true"></div>
-  <div class="glow glow-two" aria-hidden="true"></div>
-
-  <section class="relative mx-auto flex min-h-screen max-w-6xl flex-col items-center
-                  justify-center px-6 py-24 text-center">
-    <p class="intro-item mb-5 text-xs font-semibold uppercase tracking-[0.35em] text-rose-300">
-      Our anniversary
-    </p>
-    <h1 class="intro-item max-w-4xl text-5xl font-semibold tracking-tight text-stone-50
-               sm:text-7xl lg:text-8xl">
-      A little corner of the internet, just for us.
-    </h1>
-    <p class="intro-item mt-7 max-w-2xl text-base leading-8 text-stone-300 sm:text-lg">
-      This is where our favourite moments, quiet adventures, and the story still
-      unfolding will live.
-    </p>
-    <div class="intro-item mt-10">
-      <app-romantic-button
-        label="Begin our story"
-        (pressed)="scrollToStory()"
-      />
-    </div>
+<main id="home" class="browse-page">
+  <app-site-header />
+  <section class="hero" [style.--hero-accent]="featured.accent" aria-labelledby="hero-title">
+    <div class="hero-art" [style.background-image]="featured.imageUrl ? 'url(' + featured.imageUrl + ')' : null"></div><div class="hero-vignette"></div>
+    <div class="hero-content">
+      <p class="hero-item eyebrow"><b>N</b><span>Our original story</span></p><p class="hero-item chapter">{{featured.date}} · {{featured.eyebrow}}</p>
+      <h1 id="hero-title" class="hero-item">{{featured.title}}</h1><p class="hero-item synopsis">{{featured.description}}</p>
+      <div class="hero-item actions"><button class="primary" type="button" (click)="openMemory(featured)">▶ Play our story</button><button class="secondary" type="button" (click)="scrollToMemories()">ⓘ More memories</button></div>
+    </div><div class="scroll-cue">Scroll to explore ↓</div>
   </section>
-
-  <section id="our-story" class="mx-auto max-w-4xl px-6 py-28">
-    <p class="text-sm uppercase tracking-[0.3em] text-rose-300">Chapter one</p>
-    <h2 class="mt-4 text-4xl font-semibold text-stone-50">Our story starts here.</h2>
-    <p class="mt-5 max-w-2xl leading-8 text-stone-300">
-      Replace this starter copy with the moment you met, then grow the site one
-      memory at a time.
-    </p>
-  </section>
+  <section id="memories" class="catalogue" aria-label="Our memory collection">@for(row of rows;track row.id){<app-memory-row [row]="row" (memorySelected)="openMemory($event)"/>}</section>
+  <section id="coming-soon" class="coming-soon"><p>Coming next</p><h2>The best episodes have not happened yet.</h2><span>New memories added as we make them.</span></section>
+  <footer>Our Story · A private collection made for two</footer>
+  @if(selectedMemory();as memory){
+    <div class="modal-backdrop" role="presentation" (click)="closeMemory()"><article class="memory-modal" role="dialog" aria-modal="true" [attr.aria-labelledby]="memory.id+'-modal-title'" (click)="$event.stopPropagation()">
+      <button class="close" type="button" aria-label="Close memory" (click)="closeMemory()">×</button><div class="modal-art" [style.--modal-accent]="memory.accent" [style.background-image]="memory.imageUrl ? 'url(' + memory.imageUrl + ')' : null"><span>▶</span></div>
+      <div class="modal-copy"><p>{{memory.eyebrow}} · {{memory.date}}</p><h2 [id]="memory.id+'-modal-title'">{{memory.title}}</h2><span>{{memory.description}}</span><small>Personal photos and video will appear here when added to the media catalogue.</small></div>
+    </article></div>
+  }
 </main>

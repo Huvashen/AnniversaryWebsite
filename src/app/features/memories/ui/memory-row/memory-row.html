@@ -1,0 +1,1 @@
+<section class="memory-row" [attr.aria-labelledby]="row().id+'-title'"><h2 [id]="row().id+'-title'">{{row().title}}</h2><div class="rail">@for(memory of row().memories;track memory.id){<app-memory-card [memory]="memory" (selected)="memorySelected.emit($event)"/>}</div></section>
