@@ -1,0 +1,21 @@
+<main class="intro-screen" [class.running]="started()">
+  <audio #introAudio preload="auto" src="/audio/netflix-intro.mp3"></audio>
+  <div class="beam-field" aria-hidden="true">
+    @for (beam of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]; track beam) {
+      <span class="intro-beam"></span>
+    }
+  </div>
+  <div class="intro-wordmark" aria-label="Our Story">
+    @for (letter of ['O', 'U', 'R', 'S', 'T', 'O', 'R', 'Y']; track $index) {
+      <span class="intro-letter" [class.gap]="$index === 3">{{ letter }}</span>
+    }
+  </div>
+  @if (needsInteraction()) {
+    <section class="sound-gate">
+      <p>A private premiere</p>
+      <h1>Our story is ready.</h1>
+      <button type="button" (click)="beginWithSound()">Begin with sound</button
+      ><button class="muted" type="button" (click)="continueMuted()">Continue without sound</button>
+    </section>
+  }
+</main>

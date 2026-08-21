@@ -11,7 +11,7 @@ npm start
 
 Open `http://localhost:4200`.
 
-The starter passcode is `forever`. Change it in
+The date passcode is `12/10/2025` (separators are optional). Change it in
 `src/app/core/config/site-content.ts` before sharing the site.
 
 ## Production build

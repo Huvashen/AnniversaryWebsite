@@ -9,7 +9,7 @@ export class AccessService {
   readonly isUnlocked = this.accessGranted.asReadonly();
 
   unlock(passcode: string): boolean {
-    const isValid = passcode.trim().toLowerCase() === SITE_CONTENT.entrance.passcode.toLowerCase();
+    const isValid = passcode.replace(/\D/g, '') === SITE_CONTENT.entrance.passcode;
 
     if (isValid) {
       sessionStorage.setItem(ACCESS_KEY, 'true');

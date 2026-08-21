@@ -1,50 +1,46 @@
 <main class="entrance-shell">
-  <div class="ambient ambient-left" aria-hidden="true"></div>
-  <div class="ambient ambient-right" aria-hidden="true"></div>
-
   <header class="entrance-header entrance-reveal">
-    <a class="wordmark" href="/welcome" aria-label="Our Story home">OUR STORY</a>
-    <span class="private-label">Private collection</span>
+    <a class="wordmark" href="/intro">OUR STORY</a><span>Private collection</span>
   </header>
-
-  <section class="entrance-content" aria-labelledby="entrance-title">
-    <p class="eyebrow entrance-reveal">{{ content.eyebrow }}</p>
-    <h1 id="entrance-title" class="entrance-reveal">{{ content.title }}</h1>
-    <p class="subtitle entrance-reveal">{{ content.description }}</p>
-
-    @if (!profileSelected()) {
-      <button class="profile entrance-reveal" type="button" (click)="selectProfile()">
-        <span class="profile-art" aria-hidden="true">
-          <span class="heart">♥</span>
-        </span>
-        <span class="profile-name">{{ content.profileName }}</span>
-      </button>
-    } @else {
-      <form class="passcode-panel" (ngSubmit)="enterStory()">
-        <button class="back-button" type="button" (click)="profileSelected.set(false)">
-          <span aria-hidden="true">←</span> Profiles
-        </button>
-        <label for="passcode">Enter our secret word</label>
-        <div class="passcode-row">
-          <input
-            #passcodeInput
-            id="passcode"
-            name="passcode"
-            type="password"
-            autocomplete="current-password"
-            [(ngModel)]="passcode"
-            [attr.aria-invalid]="errorMessage() ? true : null"
-            [attr.aria-describedby]="errorMessage() ? 'passcode-error' : 'passcode-hint'"
-          />
-          <button type="submit">Enter</button>
-        </div>
-        <p id="passcode-hint" class="hint">{{ content.passcodeHint }}</p>
-        @if (errorMessage()) {
-          <p id="passcode-error" class="error" role="alert">{{ errorMessage() }}</p>
-        }
-      </form>
-    }
+  <section class="login-card entrance-reveal" aria-labelledby="login-title">
+    <div class="profile-art" aria-hidden="true">♥</div>
+    <p class="eyebrow">{{ content.eyebrow }}</p>
+    <h1 id="login-title">{{ content.title }}</h1>
+    <p class="description">{{ content.description }}</p>
+    <form (ngSubmit)="enterStory()">
+      <label for="anniversary-date">Our date</label
+      ><input
+        id="anniversary-date"
+        name="anniversary-date"
+        type="text"
+        inputmode="numeric"
+        autocomplete="off"
+        placeholder="DD / MM / YYYY"
+        [(ngModel)]="passcode"
+        [attr.aria-invalid]="errorMessage() ? true : null"
+      />
+      @if (errorMessage()) {
+        <p class="error" role="alert">{{ errorMessage() }}</p>
+      }
+      <button class="enter-button" type="submit">Sign in to our story</button
+      ><button class="hint-button" type="button" (click)="showHint()">Need a hint?</button>
+    </form>
   </section>
-
-  <footer class="entrance-footer entrance-reveal">Made with every favourite memory in mind.</footer>
+  <footer class="entrance-reveal">One story · Two hearts · Every episode ahead</footer>
+  @if (hintOpen()) {
+    <div class="hint-backdrop" role="presentation" (click)="closeHint()">
+      <section
+        class="hint-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="hint-title"
+        (click)="$event.stopPropagation()"
+      >
+        <button type="button" aria-label="Close hint" (click)="closeHint()">×</button>
+        <p>Your hint</p>
+        <h2 id="hint-title">{{ content.passcodeHint }}</h2>
+        <span>Think back to the night that became the start of us.</span>
+      </section>
+    </div>
+  }
 </main>
