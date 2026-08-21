@@ -32,26 +32,26 @@ export class AnimationService {
   playCinematicIntro(): void {
     if (globalThis.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return;
 
-    animate('.intro-beam', {
-      scaleY: { from: 0, to: 1 },
+    animate('.light-streak', {
+      scaleX: { from: 0, to: 1 },
       opacity: { from: 0, to: 1 },
-      delay: stagger(70),
-      duration: 780,
+      delay: stagger(45),
+      duration: 680,
       ease: 'inOut(4)',
     });
-    animate('.intro-letter', {
+    animate('.n-segment', {
       opacity: { from: 0, to: 1 },
-      scaleX: { from: 0.15, to: 1 },
-      filter: { from: 'blur(16px)', to: 'blur(0px)' },
-      delay: stagger(85, { start: 500 }),
-      duration: 900,
+      scaleY: { from: 0.05, to: 1 },
+      filter: { from: 'brightness(4)', to: 'brightness(1)' },
+      delay: stagger(180, { start: 240 }),
+      duration: 820,
       ease: 'out(4)',
     });
-    animate('.intro-wordmark', {
-      scale: { from: 1.08, to: 1 },
-      filter: { from: 'brightness(2.4)', to: 'brightness(1)' },
-      delay: 1100,
-      duration: 1500,
+    animate('.n-logo', {
+      scale: { from: 0.88, to: 1.08 },
+      filter: { from: 'drop-shadow(0 0 0 #e50914)', to: 'drop-shadow(0 0 28px #e50914)' },
+      delay: 950,
+      duration: 1400,
       ease: 'out(3)',
     });
   }

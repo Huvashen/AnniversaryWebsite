@@ -30,7 +30,7 @@ export class EntrancePage implements AfterViewInit {
       this.animations.shake('.login-card');
       return;
     }
-    void this.router.navigate(['/browse']);
+    void this.router.navigate(['/profiles']);
   }
   showHint(): void {
     this.hintOpen.set(true);
