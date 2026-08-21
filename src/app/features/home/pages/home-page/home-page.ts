@@ -1,27 +1,18 @@
-import {
-  AfterViewInit,
-  ChangeDetectionStrategy,
-  Component,
-  inject,
-} from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, HostListener, inject, signal } from '@angular/core';
 import { AnimationService } from '../../../../core/animations/animation.service';
-import { RomanticButton } from '../../../../shared/ui/romantic-button/romantic-button';
+import { SiteHeader } from '../../../../shared/layout/site-header/site-header';
+import { Memory } from '../../../../shared/models/memory.model';
+import { FEATURED_MEMORY, MEMORY_ROWS } from '../../../memories/data-access/memory-catalog';
+import { MemoryRow } from '../../../memories/ui/memory-row/memory-row';
 
-@Component({
-  selector: 'app-home-page',
-  imports: [RomanticButton],
-  templateUrl: './home-page.html',
-  styleUrl: './home-page.css',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-})
+@Component({ selector: 'app-home-page', imports: [SiteHeader, MemoryRow], templateUrl: './home-page.html', styleUrl: './home-page.css', changeDetection: ChangeDetectionStrategy.OnPush })
 export class HomePage implements AfterViewInit {
   private readonly animations = inject(AnimationService);
-
-  ngAfterViewInit(): void {
-    this.animations.reveal('.intro-item');
-  }
-
-  scrollToStory(): void {
-    document.querySelector('#our-story')?.scrollIntoView({ behavior: 'smooth' });
-  }
+  readonly featured = FEATURED_MEMORY;
+  readonly rows = MEMORY_ROWS;
+  readonly selectedMemory = signal<Memory | null>(null);
+  ngAfterViewInit(): void { this.animations.reveal('.hero-item'); }
+  @HostListener('document:keydown.escape') closeMemory(): void { this.selectedMemory.set(null); document.body.style.overflow = ''; }
+  openMemory(memory: Memory): void { this.selectedMemory.set(memory); document.body.style.overflow = 'hidden'; }
+  scrollToMemories(): void { document.getElementById('memories')?.scrollIntoView({ behavior: 'smooth' }); }
 }

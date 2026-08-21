@@ -1,0 +1,20 @@
+import { Memory, MemoryRow } from '../../../shared/models/memory.model';
+
+export const MEMORIES: readonly Memory[] = [
+  { id: 'the-beginning', title: 'The Beginning', date: 'Chapter 01', eyebrow: 'Where it all started', description: 'The first hello, the first spark, and the beginning of everything that followed.', category: 'chapters', accent: '#8f1d2c', featured: true },
+  { id: 'our-favourite-day', title: 'Our Favourite Day', date: 'A perfect episode', eyebrow: 'Most rewatched', description: 'One of those days we would happily live a hundred times over.', category: 'favourites', accent: '#bd5969', duration: '2 min' },
+  { id: 'late-night-drives', title: 'Late-night Drives', date: 'After midnight', eyebrow: 'Quiet adventure', description: 'No destination needed—just music, empty roads, and us.', category: 'adventures', accent: '#243b55', duration: '1 min' },
+  { id: 'the-laugh', title: 'That Laugh', date: 'Always', eyebrow: 'Instant favourite', description: 'The kind of happiness that cannot be staged or forgotten.', category: 'favourites', accent: '#9f6c39', duration: '45 sec' },
+  { id: 'little-traditions', title: 'Little Traditions', date: 'Our rituals', eyebrow: 'Made by us', description: 'Small things, repeated with love, becoming part of who we are.', category: 'quiet-moments', accent: '#6e4d67' },
+  { id: 'first-adventure', title: 'Our First Adventure', date: 'Chapter 02', eyebrow: 'The world opened up', description: 'New places felt familiar because we discovered them together.', category: 'chapters', accent: '#3b6c67' },
+  { id: 'sunset-chasers', title: 'Sunset Chasers', date: 'Golden hour', eyebrow: 'Adventure collection', description: 'Proof that we have always known when to stop and watch the sky.', category: 'adventures', accent: '#a74d36' },
+  { id: 'ordinary-magic', title: 'Ordinary Magic', date: 'Everyday us', eyebrow: 'Quiet collection', description: 'The unplanned, unfiltered moments that somehow mean the most.', category: 'quiet-moments', accent: '#75646b' },
+  { id: 'choosing-us', title: 'Choosing Us', date: 'Chapter 03', eyebrow: 'The story continues', description: 'Not just one moment, but every small choice that brought us here.', category: 'chapters', accent: '#7a1722' },
+  { id: 'home', title: 'Feels Like Home', date: 'No matter where', eyebrow: 'Our comfort show', description: 'A person becoming a place—the safest place either of us knows.', category: 'favourites', accent: '#5d315f' },
+  { id: 'slow-sundays', title: 'Slow Sundays', date: 'Unhurried', eyebrow: 'Quiet collection', description: 'Soft mornings, no plans, and nowhere else we need to be.', category: 'quiet-moments', accent: '#6c5d46' },
+  { id: 'next-stop', title: 'Where To Next?', date: 'Coming soon', eyebrow: 'Next episode', description: 'The best part of our story is how much of it is still ahead.', category: 'adventures', accent: '#33536c' },
+];
+
+const rowTitles: Record<MemoryRow['id'], string> = { favourites: 'Most Rewatched', chapters: 'Our Story, Chapter by Chapter', adventures: 'Adventures Together', 'quiet-moments': 'The Quiet Moments' };
+export const MEMORY_ROWS: readonly MemoryRow[] = Object.entries(rowTitles).map(([id, title]) => ({ id: id as MemoryRow['id'], title, memories: MEMORIES.filter((memory) => memory.category === id) }));
+export const FEATURED_MEMORY = MEMORIES.find((memory) => memory.featured) ?? MEMORIES[0];

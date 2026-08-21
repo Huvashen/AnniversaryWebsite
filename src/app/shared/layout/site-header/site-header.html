@@ -1,0 +1,7 @@
+<header class="site-header" [class.scrolled]="scrolled()">
+  <a class="wordmark" href="/browse">OUR STORY</a>
+  <button class="menu-button" type="button" [attr.aria-expanded]="menuOpen()" (click)="menuOpen.set(!menuOpen())"><span></span><span></span><span></span><b>Toggle menu</b></button>
+  <nav [class.open]="menuOpen()" aria-label="Primary navigation">
+    <button type="button" (click)="scrollTo('home')">Home</button><button type="button" (click)="scrollTo('memories')">Our Memories</button><button type="button" (click)="scrollTo('coming-soon')">Coming Soon</button><button class="exit" type="button" (click)="exit()">Exit</button>
+  </nav>
+</header>
