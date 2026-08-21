@@ -32,34 +32,52 @@ export class AnimationService {
   playCinematicIntro(): void {
     if (globalThis.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return;
 
-    animate('.n-image-frame', {
+    animate('.yoshvi-letter', {
       opacity: { from: 0, to: 1 },
-      scale: { from: 0.82, to: 1 },
-      duration: 820,
+      scaleY: { from: 0.02, to: 1 },
+      y: { from: 24, to: 0 },
+      delay: stagger(95, { start: 120 }),
+      duration: 760,
       ease: 'out(4)',
     });
-    animate('.n-image', {
+    animate('.logo-scan', {
+      opacity: [0, 1, 0],
+      x: { from: '-180%', to: '760%' },
+      delay: 560,
+      duration: 920,
+      ease: 'inOut(3)',
+    });
+    animate('.yoshvi-wordmark', {
       filter: [
-        'brightness(0.35) drop-shadow(0 0 0 #e50914)',
-        'brightness(1.35) drop-shadow(0 0 26px #e50914)',
-        'brightness(1) drop-shadow(0 0 8px #e50914)',
+        'brightness(0.45) drop-shadow(0 0 0 #e50914)',
+        'brightness(1.4) drop-shadow(0 0 28px #e50914)',
+        'brightness(1) drop-shadow(0 0 9px #e50914)',
       ],
-      scale: [0.96, 1.035, 1],
-      duration: 1450,
+      scale: [0.92, 1.035, 1],
+      delay: 260,
+      duration: 1550,
       ease: 'out(4)',
     });
-    animate('.red-halo', {
-      opacity: [0, 0.32, 0.08],
-      scale: { from: 0.35, to: 1.15 },
-      delay: 680,
-      duration: 1450,
+    animate('.red-trail', {
+      opacity: [0, 0.65, 0],
+      scaleY: { from: 0.08, to: 1 },
+      delay: stagger(35, { start: 1180, from: 'center' }),
+      duration: 780,
       ease: 'out(3)',
     });
-    animate('.n-image-frame', {
-      scale: { from: 1, to: 1.13 },
-      delay: 1650,
-      duration: 1150,
-      ease: 'inOut(3)',
+    animate('.red-halo', {
+      opacity: [0, 0.34, 0.08],
+      scale: { from: 0.35, to: 1.25 },
+      delay: 820,
+      duration: 1550,
+      ease: 'out(3)',
+    });
+    animate('.logo-stage', {
+      scale: { from: 1, to: 1.24 },
+      filter: { from: 'blur(0px)', to: 'blur(1.5px)' },
+      delay: 1780,
+      duration: 1120,
+      ease: 'in(3)',
     });
     animate('.intro-screen', {
       opacity: { from: 1, to: 0 },
