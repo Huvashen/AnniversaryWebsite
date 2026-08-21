@@ -35,67 +35,52 @@ export class AnimationService {
     animate('.n-left', {
       opacity: { from: 0, to: 1 },
       scaleY: { from: 0, to: 1 },
-      duration: 360,
+      duration: 430,
       ease: 'out(4)',
     });
-    animate('.n-diagonal, .n-fold', {
+    animate('.n-diagonal', {
       opacity: { from: 0, to: 1 },
       scaleY: { from: 0, to: 1 },
-      delay: stagger(55, { start: 280 }),
-      duration: 520,
+      delay: 320,
+      duration: 620,
       ease: 'out(4)',
     });
     animate('.n-right', {
       opacity: { from: 0, to: 1 },
       scaleY: { from: 0, to: 1 },
-      delay: 620,
-      duration: 390,
-      ease: 'out(4)',
-    });
-    animate('.n-logo', {
-      filter: { from: 'drop-shadow(0 0 0 #e50914)', to: 'drop-shadow(0 0 25px #e50914)' },
       delay: 760,
-      duration: 580,
+      duration: 430,
       ease: 'out(4)',
     });
-    animate('.intro-flash', {
-      opacity: [0, 0.72, 0],
-      delay: 1260,
-      duration: 650,
+    animate('.n-shine', {
+      opacity: [0, 0.9, 0],
+      y: { from: '-120%', to: '240%' },
+      delay: 820,
+      duration: 950,
       ease: 'inOut(3)',
     });
+    animate('.red-halo', {
+      opacity: [0, 0.38, 0.12],
+      scale: { from: 0.4, to: 1.2 },
+      delay: 1050,
+      duration: 1250,
+      ease: 'out(3)',
+    });
     animate('.n-logo', {
-      scale: { from: 1, to: 14 },
-      opacity: [1, 1, 0],
-      delay: 1420,
-      duration: 1050,
-      ease: 'in(4)',
-    });
-    animate('.spectrum-field', {
-      opacity: { from: 0, to: 1 },
-      delay: 1520,
-      duration: 260,
-      ease: 'linear',
-    });
-    animate('.spectrum-streak', {
-      opacity: { from: 0, to: 1 },
-      scaleY: { from: 0.04, to: 1 },
-      delay: stagger(13, { start: 1540, from: 'center' }),
-      duration: 560,
-      ease: 'out(4)',
-    });
-    animate('.spectrum-field', {
-      scaleX: { from: 1, to: 1.85 },
-      filter: { from: 'blur(0px)', to: 'blur(10px)' },
-      opacity: { from: 1, to: 0 },
-      delay: 2600,
-      duration: 980,
-      ease: 'in(3)',
+      scale: [0.96, 1.03, 1],
+      filter: [
+        'drop-shadow(0 0 0 #e50914)',
+        'drop-shadow(0 0 24px #e50914)',
+        'drop-shadow(0 0 8px #e50914)',
+      ],
+      delay: 980,
+      duration: 1450,
+      ease: 'out(3)',
     });
     animate('.intro-screen', {
       opacity: { from: 1, to: 0 },
-      delay: 3460,
-      duration: 460,
+      delay: 3260,
+      duration: 620,
       ease: 'in(3)',
     });
   }
