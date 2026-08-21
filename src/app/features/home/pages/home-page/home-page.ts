@@ -4,8 +4,9 @@ import { SiteHeader } from '../../../../shared/layout/site-header/site-header';
 import { Memory } from '../../../../shared/models/memory.model';
 import { FEATURED_MEMORY, MEMORY_ROWS } from '../../../memories/data-access/memory-catalog';
 import { MemoryRow } from '../../../memories/ui/memory-row/memory-row';
+import { MemoryViewer } from '../../../memories/ui/memory-viewer/memory-viewer';
 
-@Component({ selector: 'app-home-page', imports: [SiteHeader, MemoryRow], templateUrl: './home-page.html', styleUrl: './home-page.css', changeDetection: ChangeDetectionStrategy.OnPush })
+@Component({ selector: 'app-home-page', imports: [SiteHeader, MemoryRow, MemoryViewer], templateUrl: './home-page.html', styleUrl: './home-page.css', changeDetection: ChangeDetectionStrategy.OnPush })
 export class HomePage implements AfterViewInit {
   private readonly animations = inject(AnimationService);
   readonly featured = FEATURED_MEMORY;
