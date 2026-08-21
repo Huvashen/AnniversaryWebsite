@@ -24,29 +24,19 @@
   z-index: 3;
   transform-origin: center;
 }
-.yoshvi-wordmark {
+.logo-mark {
   position: relative;
-  display: flex;
-  align-items: center;
+  width: min(84vw, 34rem);
   overflow: hidden;
-  padding: 0.18em 0.14em;
-  color: #e50914;
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-  font-size: clamp(3.2rem, 13vw, 10.5rem);
-  font-weight: 900;
-  letter-spacing: -0.075em;
-  line-height: 0.86;
-  text-transform: uppercase;
-  white-space: nowrap;
 }
-.yoshvi-letter {
-  display: inline-block;
-  background: linear-gradient(90deg, #85060e 0, #e50914 38%, #ff1b26 55%, #a30710 100%);
-  background-clip: text;
-  color: transparent;
+.netflix-n-logo {
+  display: block;
+  width: 100%;
+  height: auto;
   opacity: 0;
   transform-origin: bottom;
-  text-shadow: 0 0 1px #e50914;
+  user-select: none;
+  -webkit-user-drag: none;
 }
 .logo-scan {
   position: absolute;
@@ -103,7 +93,7 @@
   filter: brightness(1.6);
 }
 @media (prefers-reduced-motion: reduce) {
-  .yoshvi-letter {
+  .netflix-n-logo {
     opacity: 1;
   }
   .trail-field {

@@ -32,11 +32,11 @@ export class AnimationService {
   playCinematicIntro(): void {
     if (globalThis.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return;
 
-    animate('.yoshvi-letter', {
+    animate('.netflix-n-logo', {
       opacity: { from: 0, to: 1 },
       scaleY: { from: 0.02, to: 1 },
       y: { from: 24, to: 0 },
-      delay: stagger(95, { start: 120 }),
+      delay: 120,
       duration: 760,
       ease: 'out(4)',
     });
@@ -47,7 +47,7 @@ export class AnimationService {
       duration: 920,
       ease: 'inOut(3)',
     });
-    animate('.yoshvi-wordmark', {
+    animate('.logo-mark', {
       filter: [
         'brightness(0.45) drop-shadow(0 0 0 #e50914)',
         'brightness(1.4) drop-shadow(0 0 28px #e50914)',
