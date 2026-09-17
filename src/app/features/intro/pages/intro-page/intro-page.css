@@ -26,7 +26,7 @@
 }
 .logo-mark {
   position: relative;
-  width: min(84vw, 34rem);
+  width: min(58vw, 21rem);
   overflow: hidden;
 }
 .netflix-n-logo {
@@ -98,5 +98,10 @@
   }
   .trail-field {
     display: none;
+  }
+}
+@media (max-width: 560px) {
+  .logo-mark {
+    width: min(68vw, 18rem);
   }
 }
