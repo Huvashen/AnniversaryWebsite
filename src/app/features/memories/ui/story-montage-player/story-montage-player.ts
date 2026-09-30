@@ -23,6 +23,7 @@ export class StoryMontagePlayer implements OnDestroy {
   readonly progress = signal(0);
   readonly muted = signal(false);
   readonly paused = signal(false);
+  readonly controlsVisible = signal(false);
   readonly activeItem = computed(() => this.items()[this.activeIndex()]);
   readonly itemNumber = computed(() =>
     String(this.activeIndex() + 1).padStart(String(this.items().length).length, '0'),
@@ -31,6 +32,7 @@ export class StoryMontagePlayer implements OnDestroy {
   readonly activeVideo = viewChild<ElementRef<HTMLVideoElement>>('activeVideo');
 
   private imageTimer?: number;
+  private controlsTimer?: number;
   private imageStartedAt = 0;
   private imageElapsed = 0;
   private imageDuration = 5000;
@@ -45,6 +47,16 @@ export class StoryMontagePlayer implements OnDestroy {
 
   ngOnDestroy(): void {
     this.clearImageTimer();
+    this.clearControlsTimer();
+  }
+
+  showControls(): void {
+    this.controlsVisible.set(true);
+    this.clearControlsTimer();
+
+    if (!this.paused()) {
+      this.controlsTimer = window.setTimeout(() => this.controlsVisible.set(false), 2200);
+    }
   }
 
   onImageLoaded(item: StoryImageItem): void {
@@ -78,9 +90,11 @@ export class StoryMontagePlayer implements OnDestroy {
       if (video.paused) {
         void video.play();
         this.paused.set(false);
+        this.showControls();
       } else {
         video.pause();
         this.paused.set(true);
+        this.clearControlsTimer();
       }
       return;
     }
@@ -88,9 +102,11 @@ export class StoryMontagePlayer implements OnDestroy {
     if (this.paused()) {
       this.paused.set(false);
       this.runImageTimer();
+      this.showControls();
     } else {
       this.pauseImageTimer();
       this.paused.set(true);
+      this.clearControlsTimer();
     }
   }
 
@@ -139,6 +155,13 @@ export class StoryMontagePlayer implements OnDestroy {
     if (this.imageTimer !== undefined) {
       window.clearInterval(this.imageTimer);
       this.imageTimer = undefined;
+    }
+  }
+
+  private clearControlsTimer(): void {
+    if (this.controlsTimer !== undefined) {
+      window.clearTimeout(this.controlsTimer);
+      this.controlsTimer = undefined;
     }
   }
 }

@@ -118,7 +118,18 @@ button:focus-visible {
   display: flex;
   align-items: center;
   gap: clamp(1rem, 4vw, 3rem);
+  opacity: 0;
+  pointer-events: none;
   transform: translate(-50%, -50%);
+  transition: opacity 180ms ease;
+}
+
+.montage:hover .controls,
+.montage.controls-visible .controls,
+.montage.is-paused .controls,
+.montage:has(.controls button:focus-visible) .controls {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .controls button {

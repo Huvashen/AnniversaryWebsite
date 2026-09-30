@@ -1,4 +1,10 @@
-<section class="montage" aria-label="Our story montage">
+<section
+  class="montage"
+  [class.controls-visible]="controlsVisible()"
+  [class.is-paused]="paused()"
+  aria-label="Our story montage"
+  (click)="showControls()"
+>
   @for (item of [activeItem()]; track item.id) {
     @if (item.type === 'video') {
       <video
