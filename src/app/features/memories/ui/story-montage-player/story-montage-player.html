@@ -39,6 +39,7 @@
       </button>
     }
     <button
+      class="play-toggle"
       type="button"
       [attr.aria-label]="paused() ? 'Play montage' : 'Pause montage'"
       (click)="togglePlayback()"
@@ -50,14 +51,16 @@
         <span aria-hidden="true">↷</span><small>10</small>
       </button>
     }
-    <button
-      type="button"
-      [attr.aria-label]="muted() ? 'Turn sound on' : 'Mute sound'"
-      (click)="toggleMute()"
-    >
-      {{ muted() ? '🔇' : '🔊' }}
-    </button>
   </div>
+
+  <button
+    class="mute-toggle"
+    type="button"
+    [attr.aria-label]="muted() ? 'Turn sound on' : 'Mute sound'"
+    (click)="toggleMute()"
+  >
+    {{ muted() ? '🔇' : '🔊' }}
+  </button>
 
   <div class="progress-track" aria-hidden="true">
     <span [style.width.%]="progress()"></span>
