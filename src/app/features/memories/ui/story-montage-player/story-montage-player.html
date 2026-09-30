@@ -34,14 +34,24 @@
   </div>
 
   <button class="skip previous" type="button" aria-label="Previous memory" (click)="previous()">
-    ‹
+    <svg class="icon skip-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path d="m14.5 6-6 6 6 6" />
+    </svg>
   </button>
-  <button class="skip next" type="button" aria-label="Next memory" (click)="next()">›</button>
+  <button class="skip next" type="button" aria-label="Next memory" (click)="next()">
+    <svg class="icon skip-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path d="m9.5 6 6 6-6 6" />
+    </svg>
+  </button>
 
   <div class="controls">
     @if (activeItem().type === 'video') {
       <button class="seek" type="button" aria-label="Rewind 10 seconds" (click)="seek(-10)">
-        <span aria-hidden="true">↶</span><small>10</small>
+        <svg class="icon seek-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M4.1 8.2A8.5 8.5 0 1 1 3.6 15" />
+          <path d="M4 3.8v4.7h4.7" />
+        </svg>
+        <span class="seek-value" aria-hidden="true">10</span>
       </button>
     }
     <button
@@ -50,11 +60,23 @@
       [attr.aria-label]="paused() ? 'Play montage' : 'Pause montage'"
       (click)="togglePlayback()"
     >
-      {{ paused() ? '▶' : 'Ⅱ' }}
+      @if (paused()) {
+        <svg class="icon play-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path class="filled-icon" d="M8 5.6v12.8L18 12 8 5.6Z" />
+        </svg>
+      } @else {
+        <svg class="icon play-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path class="filled-icon" d="M7 5.5h3.5v13H7zM13.5 5.5H17v13h-3.5z" />
+        </svg>
+      }
     </button>
     @if (activeItem().type === 'video') {
       <button class="seek" type="button" aria-label="Forward 10 seconds" (click)="seek(10)">
-        <span aria-hidden="true">↷</span><small>10</small>
+        <svg class="icon seek-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M19.9 8.2A8.5 8.5 0 1 0 20.4 15" />
+          <path d="M20 3.8v4.7h-4.7" />
+        </svg>
+        <span class="seek-value" aria-hidden="true">10</span>
       </button>
     }
   </div>
@@ -65,7 +87,17 @@
     [attr.aria-label]="muted() ? 'Turn sound on' : 'Mute sound'"
     (click)="toggleMute()"
   >
-    {{ muted() ? '🔇' : '🔊' }}
+    @if (muted()) {
+      <svg class="icon volume-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M4 9v6h4l5 4V5L8 9H4Z" />
+        <path d="m17 9 4 4m0-4-4 4" />
+      </svg>
+    } @else {
+      <svg class="icon volume-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M4 9v6h4l5 4V5L8 9H4Z" />
+        <path d="M16 9.2a4 4 0 0 1 0 5.6M18.5 6.8a7.3 7.3 0 0 1 0 10.4" />
+      </svg>
+    }
   </button>
 
   <div class="progress-track" aria-hidden="true">
