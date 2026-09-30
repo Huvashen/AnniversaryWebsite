@@ -33,6 +33,11 @@
   <button class="skip next" type="button" aria-label="Next memory" (click)="next()">›</button>
 
   <div class="controls">
+    @if (activeItem().type === 'video') {
+      <button class="seek" type="button" aria-label="Rewind 10 seconds" (click)="seek(-10)">
+        <span aria-hidden="true">↶</span><small>10</small>
+      </button>
+    }
     <button
       type="button"
       [attr.aria-label]="paused() ? 'Play montage' : 'Pause montage'"
@@ -40,6 +45,11 @@
     >
       {{ paused() ? '▶' : 'Ⅱ' }}
     </button>
+    @if (activeItem().type === 'video') {
+      <button class="seek" type="button" aria-label="Forward 10 seconds" (click)="seek(10)">
+        <span aria-hidden="true">↷</span><small>10</small>
+      </button>
+    }
     <button
       type="button"
       [attr.aria-label]="muted() ? 'Turn sound on' : 'Mute sound'"

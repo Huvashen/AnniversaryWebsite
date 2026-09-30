@@ -100,6 +100,14 @@ export class StoryMontagePlayer implements OnDestroy {
     if (video) video.muted = this.muted();
   }
 
+  seek(seconds: number): void {
+    const video = this.activeVideo()?.nativeElement;
+    if (!video || !Number.isFinite(video.duration)) return;
+
+    video.currentTime = Math.min(Math.max(video.currentTime + seconds, 0), video.duration);
+    this.onVideoProgress(video);
+  }
+
   private goTo(index: number): void {
     const itemCount = this.items().length;
     if (!itemCount) return;
