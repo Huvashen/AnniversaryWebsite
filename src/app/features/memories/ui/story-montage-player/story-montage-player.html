@@ -8,9 +8,9 @@
   <audio
     #soundtrack
     src="/media/audio/wonderwall.mp3"
-    loop
     preload="auto"
     aria-hidden="true"
+    (ended)="playNextSoundtrack()"
   ></audio>
 
   @for (item of [activeItem()]; track item.id) {
