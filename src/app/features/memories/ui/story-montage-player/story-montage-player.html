@@ -1,0 +1,55 @@
+<section class="montage" aria-label="Our story montage">
+  @for (item of [activeItem()]; track item.id) {
+    @if (item.type === 'video') {
+      <video
+        #activeVideo
+        class="media"
+        [src]="item.src"
+        [attr.aria-label]="item.label"
+        [muted]="muted()"
+        autoplay
+        playsinline
+        preload="auto"
+        (loadedmetadata)="onVideoReady(activeVideo)"
+        (timeupdate)="onVideoProgress(activeVideo)"
+        (play)="paused.set(false)"
+        (pause)="paused.set(true)"
+        (ended)="next()"
+      ></video>
+    } @else {
+      <img class="media" [src]="item.src" [alt]="item.alt" (load)="onImageLoaded(item)" />
+    }
+  }
+
+  <div class="shade" aria-hidden="true"></div>
+  <div class="identity">
+    <span>Yoshvi's story</span>
+    <strong>{{ itemNumber() }} / {{ itemTotal() }}</strong>
+  </div>
+
+  <button class="skip previous" type="button" aria-label="Previous memory" (click)="previous()">
+    ‹
+  </button>
+  <button class="skip next" type="button" aria-label="Next memory" (click)="next()">›</button>
+
+  <div class="controls">
+    <button
+      type="button"
+      [attr.aria-label]="paused() ? 'Play montage' : 'Pause montage'"
+      (click)="togglePlayback()"
+    >
+      {{ paused() ? '▶' : 'Ⅱ' }}
+    </button>
+    <button
+      type="button"
+      [attr.aria-label]="muted() ? 'Turn sound on' : 'Mute sound'"
+      (click)="toggleMute()"
+    >
+      {{ muted() ? '🔇' : '🔊' }}
+    </button>
+  </div>
+
+  <div class="progress-track" aria-hidden="true">
+    <span [style.width.%]="progress()"></span>
+  </div>
+</section>

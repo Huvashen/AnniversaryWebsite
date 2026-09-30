@@ -1,3 +1,5 @@
+import { StoryMediaItem } from './story-media.model';
+
 export interface Memory {
   readonly id: string;
   readonly title: string;
@@ -10,6 +12,7 @@ export interface Memory {
   readonly imageUrl?: string;
   readonly galleryUrls?: readonly string[];
   readonly videoUrl?: string;
+  readonly montage?: readonly StoryMediaItem[];
   readonly featured?: boolean;
 }
 
