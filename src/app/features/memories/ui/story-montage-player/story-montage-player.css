@@ -1,0 +1,172 @@
+:host {
+  position: relative;
+  z-index: 2;
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: #000;
+}
+
+.montage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #000;
+}
+
+.media {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #000;
+  animation: media-in 420ms ease-out both;
+}
+
+.shade {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, #0008 0, transparent 22%),
+    linear-gradient(0deg, #000b 0, transparent 30%);
+  pointer-events: none;
+}
+
+.identity {
+  position: absolute;
+  top: 1.15rem;
+  left: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  color: #fff;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.identity span {
+  color: #e50914;
+}
+
+.identity strong {
+  color: #ffffffb8;
+  font: inherit;
+}
+
+button {
+  display: grid;
+  place-items: center;
+  border: 1px solid #ffffff70;
+  border-radius: 50%;
+  background: #111b;
+  color: #fff;
+  cursor: pointer;
+  transition:
+    border-color 160ms ease,
+    background 160ms ease,
+    transform 160ms ease;
+}
+
+button:hover,
+button:focus-visible {
+  border-color: #fff;
+  background: #202020ed;
+  transform: scale(1.08);
+}
+
+.skip {
+  position: absolute;
+  top: 50%;
+  width: 2.65rem;
+  aspect-ratio: 1;
+  font-size: 2rem;
+  opacity: 0;
+  transform: translateY(-50%);
+}
+
+.montage:hover .skip,
+.skip:focus-visible {
+  opacity: 1;
+}
+
+.skip:hover,
+.skip:focus-visible {
+  transform: translateY(-50%) scale(1.08);
+}
+
+.previous {
+  left: 1rem;
+}
+
+.next {
+  right: 1rem;
+}
+
+.controls {
+  position: absolute;
+  right: 1rem;
+  bottom: 1.25rem;
+  display: flex;
+  gap: 0.55rem;
+}
+
+.controls button {
+  width: 2.4rem;
+  aspect-ratio: 1;
+  font-size: 0.85rem;
+}
+
+.progress-track {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 0.24rem;
+  overflow: hidden;
+  background: #ffffff30;
+}
+
+.progress-track span {
+  display: block;
+  height: 100%;
+  background: #e50914;
+  transition: width 80ms linear;
+}
+
+@keyframes media-in {
+  from {
+    opacity: 0;
+    transform: scale(1.015);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (max-width: 560px) {
+  .identity {
+    top: 0.9rem;
+    left: 0.9rem;
+  }
+
+  .skip {
+    width: 2.35rem;
+    opacity: 0.85;
+  }
+
+  .previous {
+    left: 0.65rem;
+  }
+
+  .next {
+    right: 0.65rem;
+  }
+
+  .controls {
+    right: 0.7rem;
+    bottom: 0.85rem;
+  }
+}

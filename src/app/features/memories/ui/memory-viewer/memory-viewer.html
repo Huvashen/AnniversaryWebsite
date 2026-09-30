@@ -10,9 +10,12 @@
     <div
       class="stage"
       [style.--accent]="memory().accent"
-      [class.has-media]="activeImage() || memory().videoUrl"
+      [class.has-media]="activeImage() || memory().videoUrl || memory().montage?.length"
+      [class.montage-stage]="memory().montage?.length"
     >
-      @if (memory().videoUrl) {
+      @if (memory().montage?.length) {
+        <app-story-montage-player [items]="memory().montage!" />
+      } @else if (memory().videoUrl) {
         <video controls playsinline preload="metadata" [poster]="memory().imageUrl">
           <source [src]="memory().videoUrl" />
           Your browser does not support this video.
@@ -42,7 +45,7 @@
       <p>{{ memory().eyebrow }} · {{ memory().date }}</p>
       <h2 [id]="memory().id + '-viewer-title'">{{ memory().title }}</h2>
       <span>{{ memory().description }}</span>
-      @if (!activeImage() && !memory().videoUrl) {
+      @if (!activeImage() && !memory().videoUrl && !memory().montage?.length) {
         <small
           >Add an <code>imageUrl</code>, <code>galleryUrls</code>, or <code>videoUrl</code> to this
           memory in the catalogue.</small

@@ -1,4 +1,5 @@
 import { Memory, MemoryRow } from '../../../shared/models/memory.model';
+import { STORY_MONTAGE } from './story-montage.catalog';
 
 export const MEMORIES: readonly Memory[] = [
   {
@@ -9,6 +10,7 @@ export const MEMORIES: readonly Memory[] = [
     description: 'The first hello, the first spark, and the beginning of everything that followed.',
     category: 'chapters',
     accent: '#8f1d2c',
+    montage: STORY_MONTAGE,
     featured: true,
   },
   {

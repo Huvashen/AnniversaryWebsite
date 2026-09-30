@@ -54,6 +54,13 @@
   content: '';
   pointer-events: none;
 }
+.stage.montage-stage {
+  aspect-ratio: 16/9;
+  background: #000;
+}
+.stage.montage-stage:after {
+  display: none;
+}
 .stage video,
 .stage img {
   width: 100%;

@@ -8,9 +8,11 @@ import {
   signal,
 } from '@angular/core';
 import { Memory } from '../../../../shared/models/memory.model';
+import { StoryMontagePlayer } from '../story-montage-player/story-montage-player';
 
 @Component({
   selector: 'app-memory-viewer',
+  imports: [StoryMontagePlayer],
   templateUrl: './memory-viewer.html',
   styleUrl: './memory-viewer.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
