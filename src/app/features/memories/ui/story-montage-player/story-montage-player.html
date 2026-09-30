@@ -5,6 +5,14 @@
   aria-label="Our story montage"
   (click)="showControls()"
 >
+  <audio
+    #soundtrack
+    src="/media/audio/wonderwall.mp3"
+    loop
+    preload="auto"
+    aria-hidden="true"
+  ></audio>
+
   @for (item of [activeItem()]; track item.id) {
     @if (item.type === 'video') {
       <video
@@ -18,8 +26,8 @@
         preload="auto"
         (loadedmetadata)="onVideoReady(activeVideo)"
         (timeupdate)="onVideoProgress(activeVideo)"
-        (play)="paused.set(false)"
-        (pause)="paused.set(true)"
+        (play)="onVideoPlay()"
+        (pause)="onVideoPause()"
         (ended)="next()"
       ></video>
     } @else {
