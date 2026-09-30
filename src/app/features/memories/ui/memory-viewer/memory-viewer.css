@@ -22,6 +22,12 @@
   background: #181818;
   box-shadow: 0 2rem 7rem #000;
 }
+.viewer.montage-viewer {
+  width: min(94vw, 80rem);
+  max-height: calc(100dvh - 2.5rem);
+  aspect-ratio: 16/9;
+  background: #000;
+}
 .close {
   position: absolute;
   z-index: 4;
@@ -55,6 +61,8 @@
   pointer-events: none;
 }
 .stage.montage-stage {
+  width: 100%;
+  height: 100%;
   aspect-ratio: 16/9;
   background: #000;
 }
@@ -154,7 +162,17 @@
   .viewer {
     border-radius: 0.8rem 0.8rem 0 0;
   }
+  .viewer.montage-viewer {
+    width: 100%;
+    height: 100dvh;
+    max-height: 100dvh;
+    aspect-ratio: auto;
+    border-radius: 0;
+  }
   .stage {
     aspect-ratio: 4/3;
+  }
+  .stage.montage-stage {
+    aspect-ratio: auto;
   }
 }
