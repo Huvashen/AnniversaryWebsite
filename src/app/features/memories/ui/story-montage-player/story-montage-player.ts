@@ -16,6 +16,7 @@ import { StoryImageItem, StoryMediaItem } from '../../../../shared/models/story-
 const PHOTO_SOUNDTRACK_VOLUME = 0.3;
 const VIDEO_SOUNDTRACK_VOLUME = 0.055;
 const SOUNDTRACK_FADE_DURATION = 650;
+const SOUNDTRACK_PLAYLIST = ['/media/audio/wonderwall.mp3', '/media/audio/rein-me-in.mp3'] as const;
 
 @Component({
   selector: 'app-story-montage-player',
@@ -41,6 +42,7 @@ export class StoryMontagePlayer implements AfterViewInit, OnDestroy {
   private imageTimer?: number;
   private controlsTimer?: number;
   private volumeAnimation?: JSAnimation;
+  private soundtrackIndex = 0;
   private imageStartedAt = 0;
   private imageElapsed = 0;
   private imageDuration = 5000;
@@ -120,6 +122,18 @@ export class StoryMontagePlayer implements AfterViewInit, OnDestroy {
     if (Number.isFinite(video.duration) && video.duration > 0) {
       this.progress.set((video.currentTime / video.duration) * 100);
     }
+  }
+
+  playNextSoundtrack(): void {
+    const audio = this.soundtrack()?.nativeElement;
+    if (!audio) return;
+
+    this.volumeAnimation?.cancel();
+    this.soundtrackIndex = (this.soundtrackIndex + 1) % SOUNDTRACK_PLAYLIST.length;
+    audio.src = SOUNDTRACK_PLAYLIST[this.soundtrackIndex];
+    audio.volume = 0;
+    audio.load();
+    this.playSoundtrack(this.soundtrackVolume());
   }
 
   togglePlayback(): void {
