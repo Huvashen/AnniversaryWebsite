@@ -1,4 +1,5 @@
 import {
+  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
   ElementRef,
@@ -9,7 +10,12 @@ import {
   signal,
   viewChild,
 } from '@angular/core';
+import { JSAnimation, animate } from 'animejs';
 import { StoryImageItem, StoryMediaItem } from '../../../../shared/models/story-media.model';
+
+const PHOTO_SOUNDTRACK_VOLUME = 0.3;
+const VIDEO_SOUNDTRACK_VOLUME = 0.055;
+const SOUNDTRACK_FADE_DURATION = 650;
 
 @Component({
   selector: 'app-story-montage-player',
@@ -17,7 +23,7 @@ import { StoryImageItem, StoryMediaItem } from '../../../../shared/models/story-
   styleUrl: './story-montage-player.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class StoryMontagePlayer implements OnDestroy {
+export class StoryMontagePlayer implements AfterViewInit, OnDestroy {
   readonly items = input.required<readonly StoryMediaItem[]>();
   readonly activeIndex = signal(0);
   readonly progress = signal(0);
@@ -30,9 +36,11 @@ export class StoryMontagePlayer implements OnDestroy {
   );
   readonly itemTotal = computed(() => String(this.items().length).padStart(2, '0'));
   readonly activeVideo = viewChild<ElementRef<HTMLVideoElement>>('activeVideo');
+  readonly soundtrack = viewChild<ElementRef<HTMLAudioElement>>('soundtrack');
 
   private imageTimer?: number;
   private controlsTimer?: number;
+  private volumeAnimation?: JSAnimation;
   private imageStartedAt = 0;
   private imageElapsed = 0;
   private imageDuration = 5000;
@@ -45,9 +53,25 @@ export class StoryMontagePlayer implements OnDestroy {
     this.goTo(this.activeIndex() + 1);
   }
 
+  ngAfterViewInit(): void {
+    const audio = this.soundtrack()?.nativeElement;
+    if (!audio) return;
+
+    audio.volume = 0;
+    audio.muted = this.muted();
+    this.playSoundtrack(this.soundtrackVolume());
+  }
+
   ngOnDestroy(): void {
     this.clearImageTimer();
     this.clearControlsTimer();
+    this.volumeAnimation?.cancel();
+
+    const audio = this.soundtrack()?.nativeElement;
+    if (audio) {
+      audio.pause();
+      audio.currentTime = 0;
+    }
   }
 
   showControls(): void {
@@ -65,17 +89,31 @@ export class StoryMontagePlayer implements OnDestroy {
     this.imageElapsed = 0;
     this.progress.set(0);
     this.paused.set(false);
+    this.playSoundtrack(PHOTO_SOUNDTRACK_VOLUME);
     this.runImageTimer();
   }
 
   onVideoReady(video: HTMLVideoElement): void {
     this.progress.set(0);
     video.muted = this.muted();
+    this.playSoundtrack(VIDEO_SOUNDTRACK_VOLUME);
     void video.play().catch(() => {
       this.muted.set(true);
       video.muted = true;
+      const soundtrack = this.soundtrack()?.nativeElement;
+      if (soundtrack) soundtrack.muted = true;
       void video.play().catch(() => this.paused.set(true));
     });
+  }
+
+  onVideoPlay(): void {
+    this.paused.set(false);
+    this.playSoundtrack(VIDEO_SOUNDTRACK_VOLUME);
+  }
+
+  onVideoPause(): void {
+    this.paused.set(true);
+    this.pauseSoundtrack();
   }
 
   onVideoProgress(video: HTMLVideoElement): void {
@@ -90,10 +128,12 @@ export class StoryMontagePlayer implements OnDestroy {
       if (video.paused) {
         void video.play();
         this.paused.set(false);
+        this.playSoundtrack(VIDEO_SOUNDTRACK_VOLUME);
         this.showControls();
       } else {
         video.pause();
         this.paused.set(true);
+        this.pauseSoundtrack();
         this.clearControlsTimer();
       }
       return;
@@ -101,11 +141,13 @@ export class StoryMontagePlayer implements OnDestroy {
 
     if (this.paused()) {
       this.paused.set(false);
+      this.playSoundtrack(PHOTO_SOUNDTRACK_VOLUME);
       this.runImageTimer();
       this.showControls();
     } else {
       this.pauseImageTimer();
       this.paused.set(true);
+      this.pauseSoundtrack();
       this.clearControlsTimer();
     }
   }
@@ -114,6 +156,12 @@ export class StoryMontagePlayer implements OnDestroy {
     this.muted.update((value) => !value);
     const video = this.activeVideo()?.nativeElement;
     if (video) video.muted = this.muted();
+
+    const soundtrack = this.soundtrack()?.nativeElement;
+    if (soundtrack) {
+      soundtrack.muted = this.muted();
+      if (!this.muted()) this.fadeSoundtrack(this.soundtrackVolume());
+    }
   }
 
   seek(seconds: number): void {
@@ -163,5 +211,42 @@ export class StoryMontagePlayer implements OnDestroy {
       window.clearTimeout(this.controlsTimer);
       this.controlsTimer = undefined;
     }
+  }
+
+  private playSoundtrack(volume: number): void {
+    const audio = this.soundtrack()?.nativeElement;
+    if (!audio) return;
+
+    audio.muted = this.muted();
+    if (audio.paused) {
+      void audio
+        .play()
+        .then(() => this.fadeSoundtrack(volume))
+        .catch(() => undefined);
+      return;
+    }
+
+    this.fadeSoundtrack(volume);
+  }
+
+  private pauseSoundtrack(): void {
+    this.volumeAnimation?.cancel();
+    this.soundtrack()?.nativeElement.pause();
+  }
+
+  private fadeSoundtrack(volume: number): void {
+    const audio = this.soundtrack()?.nativeElement;
+    if (!audio) return;
+
+    this.volumeAnimation?.cancel();
+    this.volumeAnimation = animate(audio, {
+      volume: Math.min(Math.max(volume, 0), 1),
+      duration: SOUNDTRACK_FADE_DURATION,
+      ease: 'out(3)',
+    });
+  }
+
+  private soundtrackVolume(): number {
+    return this.activeItem().type === 'video' ? VIDEO_SOUNDTRACK_VOLUME : PHOTO_SOUNDTRACK_VOLUME;
   }
 }
