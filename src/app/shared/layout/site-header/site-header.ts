@@ -17,8 +17,22 @@ export class SiteHeader {
     this.scrolled.set(window.scrollY > 24);
   }
   scrollTo(id: string): void {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    const target = document.getElementById(id);
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      void this.router.navigate(['/browse'], { fragment: id }).then(() => {
+        window.setTimeout(
+          () => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' }),
+          0,
+        );
+      });
+    }
     this.menuOpen.set(false);
+  }
+  openMemories(): void {
+    this.menuOpen.set(false);
+    void this.router.navigate(['/memories']);
   }
   exit(): void {
     this.access.lock();

@@ -1,5 +1,5 @@
 <header class="site-header" [class.scrolled]="scrolled()">
-  <a class="wordmark" href="/browse">OUR STORY</a>
+  <a class="wordmark" href="/browse">YOSHVI</a>
   <button
     class="menu-button"
     type="button"
@@ -10,7 +10,7 @@
   </button>
   <nav [class.open]="menuOpen()" aria-label="Primary navigation">
     <button type="button" (click)="scrollTo('home')">Home</button
-    ><button type="button" (click)="scrollTo('memories')">Our Memories</button
+    ><button type="button" (click)="openMemories()">Our Memories</button
     ><button type="button" (click)="scrollTo('coming-soon')">Coming Soon</button
     ><button class="exit" type="button" (click)="exit()">Exit</button>
   </nav>

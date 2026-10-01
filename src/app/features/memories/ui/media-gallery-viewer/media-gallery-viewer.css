@@ -1,0 +1,174 @@
+:host {
+  position: fixed;
+  z-index: 120;
+  inset: 0;
+}
+
+.backdrop {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  place-items: center;
+  padding: 1.5rem;
+  background: #000e;
+  backdrop-filter: blur(12px);
+}
+
+.viewer {
+  width: min(72rem, calc(100vw - 3rem));
+  overflow: hidden;
+  border: 1px solid #ffffff24;
+  border-radius: 0.55rem;
+  background: #101010;
+  box-shadow: 0 2rem 8rem #000;
+}
+
+header {
+  display: flex;
+  min-height: 4.4rem;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 1rem 0.75rem 1.25rem;
+  background: #171717;
+}
+
+header > div {
+  display: grid;
+  gap: 0.14rem;
+}
+
+header span {
+  color: #999;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+header strong {
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 650;
+}
+
+header .counter {
+  margin-left: auto;
+  color: #bbb;
+}
+
+.close,
+.nav {
+  display: grid;
+  aspect-ratio: 1;
+  place-items: center;
+  border: 1px solid #ffffff45;
+  border-radius: 50%;
+  background: #111c;
+  color: #fff;
+  cursor: pointer;
+  transition:
+    background 160ms ease,
+    border-color 160ms ease,
+    transform 160ms ease;
+}
+
+.close {
+  width: 2.45rem;
+}
+
+.close i,
+.close i::after {
+  display: block;
+  width: 1.05rem;
+  height: 2px;
+  background: currentColor;
+  content: '';
+  transform: rotate(45deg);
+}
+
+.close i::after {
+  transform: rotate(90deg);
+}
+
+.frame {
+  position: relative;
+  display: grid;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  place-items: center;
+  overflow: hidden;
+  background: #000;
+}
+
+.frame img,
+.frame video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.nav {
+  position: absolute;
+  z-index: 3;
+  top: 50%;
+  width: 3rem;
+  transform: translateY(-50%);
+}
+
+.nav i {
+  width: 0.62rem;
+  height: 0.62rem;
+  border-top: 2px solid currentColor;
+  border-right: 2px solid currentColor;
+}
+
+.previous {
+  left: 1rem;
+}
+
+.previous i {
+  margin-left: 0.2rem;
+  transform: rotate(-135deg);
+}
+
+.next {
+  right: 1rem;
+}
+
+.next i {
+  margin-right: 0.2rem;
+  transform: rotate(45deg);
+}
+
+.close:hover,
+.close:focus-visible,
+.nav:hover,
+.nav:focus-visible {
+  border-color: #fff;
+  outline: 0;
+  background: #2a2a2a;
+}
+
+.nav:hover,
+.nav:focus-visible {
+  transform: translateY(-50%) scale(1.08);
+}
+
+@media (max-width: 620px) {
+  .backdrop {
+    padding: 0.5rem;
+  }
+
+  .viewer {
+    width: 100%;
+  }
+
+  header {
+    min-height: 3.8rem;
+  }
+
+  .nav {
+    width: 2.5rem;
+  }
+}

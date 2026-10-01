@@ -1,0 +1,51 @@
+<main id="memories" class="memories-page">
+  <app-site-header />
+  <div class="library-shell">
+    <aside aria-label="Memory type">
+      <p>Browse</p>
+      <button type="button" [class.active]="activeType() === 'image'" (click)="selectType('image')">
+        <span class="category-icon photo-icon" aria-hidden="true"><i></i></span>
+        <span
+          ><strong>Photos</strong><small>{{ imageCount }} memories</small></span
+        >
+      </button>
+      <button type="button" [class.active]="activeType() === 'video'" (click)="selectType('video')">
+        <span class="category-icon video-icon" aria-hidden="true"><i></i></span>
+        <span
+          ><strong>Videos</strong><small>{{ videoCount }} memories</small></span
+        >
+      </button>
+    </aside>
+
+    <section class="library-content" aria-live="polite">
+      <header>
+        <p>Year 1 collection</p>
+        <h1>{{ activeType() === 'image' ? 'Our Photos' : 'Our Videos' }}</h1>
+        <span
+          >Every {{ activeType() === 'image' ? 'photo' : 'video' }} from our story, together in one
+          place.</span
+        >
+      </header>
+
+      <div class="media-grid">
+        @for (item of visibleMedia(); track item.id; let position = $index) {
+          <app-media-tile [item]="item" [position]="position + 1" (selected)="openMedia($event)" />
+        }
+      </div>
+
+      <div #loadTrigger class="load-trigger" [class.complete]="!hasMore()">
+        @if (hasMore()) {
+          <span></span><small>Loading more memories</small>
+        } @else {
+          <small>You’ve reached the end of the collection.</small>
+        }
+      </div>
+    </section>
+  </div>
+
+  @if (selectedIndex(); as index) {
+    <app-media-gallery-viewer [items]="media()" [startIndex]="index" (closed)="closeViewer()" />
+  } @else if (selectedIndex() === 0) {
+    <app-media-gallery-viewer [items]="media()" [startIndex]="0" (closed)="closeViewer()" />
+  }
+</main>

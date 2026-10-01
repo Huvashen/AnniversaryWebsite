@@ -10,6 +10,7 @@ export const MEMORIES: readonly Memory[] = [
     description: 'The first hello, the first spark, and the beginning of everything that followed.',
     category: 'chapters',
     accent: '#8f1d2c',
+    imageUrl: '/media/story-montage/images/086-img-4922.jpg',
     montage: STORY_MONTAGE,
     featured: true,
   },
