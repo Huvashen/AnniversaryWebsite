@@ -1,0 +1,22 @@
+<section class="media-row">
+  <header>
+    <h2>{{ title() }}</h2>
+    <a routerLink="/memories" [queryParams]="{ type: type() }">
+      Explore all <span class="link-arrow" aria-hidden="true"></span>
+    </a>
+  </header>
+  <div class="rail">
+    @for (item of items(); track item.id; let position = $index) {
+      <app-media-tile
+        [item]="item"
+        [position]="position + 1"
+        (selected)="mediaSelected.emit($event)"
+      />
+    }
+    <a class="see-all-card" routerLink="/memories" [queryParams]="{ type: type() }">
+      <span class="circle-arrow" aria-hidden="true"><i></i></span>
+      <strong>Explore all {{ type() === 'image' ? 'photos' : 'videos' }}</strong>
+      <small>Open the complete Year 1 collection</small>
+    </a>
+  </div>
+</section>

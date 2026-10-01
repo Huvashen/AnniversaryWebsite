@@ -9,13 +9,16 @@ import {
 import { AnimationService } from '../../../../core/animations/animation.service';
 import { SiteHeader } from '../../../../shared/layout/site-header/site-header';
 import { Memory } from '../../../../shared/models/memory.model';
-import { FEATURED_MEMORY, MEMORY_ROWS } from '../../../memories/data-access/memory-catalog';
-import { MemoryRow } from '../../../memories/ui/memory-row/memory-row';
+import { StoryMediaItem } from '../../../../shared/models/story-media.model';
+import { FEATURED_MEMORY } from '../../../memories/data-access/memory-catalog';
+import { STORY_IMAGES, STORY_VIDEOS } from '../../../memories/data-access/media-library.catalog';
+import { MediaGalleryViewer } from '../../../memories/ui/media-gallery-viewer/media-gallery-viewer';
+import { MediaPreviewRow } from '../../../memories/ui/media-preview-row/media-preview-row';
 import { MemoryViewer } from '../../../memories/ui/memory-viewer/memory-viewer';
 
 @Component({
   selector: 'app-home-page',
-  imports: [SiteHeader, MemoryRow, MemoryViewer],
+  imports: [SiteHeader, MediaPreviewRow, MemoryViewer, MediaGalleryViewer],
   templateUrl: './home-page.html',
   styleUrl: './home-page.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -23,19 +26,39 @@ import { MemoryViewer } from '../../../memories/ui/memory-viewer/memory-viewer';
 export class HomePage implements AfterViewInit {
   private readonly animations = inject(AnimationService);
   readonly featured = FEATURED_MEMORY;
-  readonly rows = MEMORY_ROWS;
+  readonly imagePreview = STORY_IMAGES.slice(0, 12);
+  readonly videoPreview = STORY_VIDEOS;
   readonly selectedMemory = signal<Memory | null>(null);
+  readonly selectedMediaIndex = signal<number | null>(null);
+  readonly selectedMediaCollection = signal<readonly StoryMediaItem[]>([]);
+
   ngAfterViewInit(): void {
     this.animations.reveal('.hero-item');
   }
+
   @HostListener('document:keydown.escape') closeMemory(): void {
     this.selectedMemory.set(null);
+    this.selectedMediaIndex.set(null);
     document.body.style.overflow = '';
   }
+
   openMemory(memory: Memory): void {
     this.selectedMemory.set(memory);
     document.body.style.overflow = 'hidden';
   }
+
+  openMedia(item: StoryMediaItem): void {
+    const collection = item.type === 'image' ? STORY_IMAGES : STORY_VIDEOS;
+    this.selectedMediaCollection.set(collection);
+    this.selectedMediaIndex.set(collection.findIndex((entry) => entry.id === item.id));
+    document.body.style.overflow = 'hidden';
+  }
+
+  closeMedia(): void {
+    this.selectedMediaIndex.set(null);
+    document.body.style.overflow = '';
+  }
+
   scrollToMemories(): void {
     document.getElementById('memories')?.scrollIntoView({ behavior: 'smooth' });
   }

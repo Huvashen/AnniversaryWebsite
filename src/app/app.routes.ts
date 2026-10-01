@@ -34,6 +34,15 @@ export const routes: Routes = [
       import('./features/home/pages/home-page/home-page').then((module) => module.HomePage),
     title: 'Our Anniversary',
   },
+  {
+    path: 'memories',
+    canActivate: [introGuard, accessGuard],
+    loadComponent: () =>
+      import('./features/memories/pages/memories-page/memories-page').then(
+        (module) => module.MemoriesPage,
+      ),
+    title: "Our Memories | Yoshvi's Story",
+  },
   { path: '', pathMatch: 'full', redirectTo: 'intro' },
   { path: '**', redirectTo: 'welcome' },
 ];
