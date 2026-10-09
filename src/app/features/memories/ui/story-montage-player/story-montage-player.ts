@@ -16,7 +16,7 @@ import { StoryImageItem, StoryMediaItem } from '../../../../shared/models/story-
 const PHOTO_SOUNDTRACK_VOLUME = 0.3;
 const VIDEO_SOUNDTRACK_VOLUME = 0.055;
 const SOUNDTRACK_FADE_DURATION = 650;
-const SOUNDTRACK_PLAYLIST = ['/media/audio/wonderwall.mp3', '/media/audio/rein-me-in.mp3'] as const;
+const SOUNDTRACK_PLAYLIST = ['media/audio/wonderwall.mp3', 'media/audio/rein-me-in.mp3'] as const;
 
 @Component({
   selector: 'app-story-montage-player',

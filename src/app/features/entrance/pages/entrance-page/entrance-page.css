@@ -15,7 +15,7 @@
   inset: 0;
   background:
     linear-gradient(#0009, #000a),
-    url('/images/couple-cinematic.png') center/cover no-repeat;
+    var(--backdrop-image) center/cover no-repeat;
 }
 .backdrop:after {
   position: absolute;

@@ -4,7 +4,7 @@ import { StoryMediaItem } from '../../../shared/models/story-media.model';
  * Playback order for the Play Our Story montage.
  * Reorder, add, or remove entries here without changing the player component.
  */
-export const STORY_MONTAGE: readonly StoryMediaItem[] = [
+const STORY_MONTAGE_ITEMS: readonly StoryMediaItem[] = [
   {
     id: '001-34e5661f-c119-4856-a75d-b97028b0601f',
     type: 'video',
@@ -613,3 +613,8 @@ export const STORY_MONTAGE: readonly StoryMediaItem[] = [
     durationMs: 5000,
   },
 ];
+
+export const STORY_MONTAGE: readonly StoryMediaItem[] = STORY_MONTAGE_ITEMS.map((item) => ({
+  ...item,
+  src: item.src.replace(/^\//, ''),
+}));

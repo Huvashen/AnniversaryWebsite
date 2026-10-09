@@ -5,7 +5,7 @@
       <p>Browse</p>
       <button type="button" [class.active]="activeType() === 'image'" (click)="selectType('image')">
         <span class="category-icon" aria-hidden="true">
-          <img class="photo-category-icon" src="/media/icons/photos.png" alt="" />
+          <img class="photo-category-icon" src="media/icons/photos.png" alt="" />
         </span>
         <span
           ><strong>Photos</strong><small>{{ imageCount }} memories</small></span
@@ -13,7 +13,7 @@
       </button>
       <button type="button" [class.active]="activeType() === 'video'" (click)="selectType('video')">
         <span class="category-icon" aria-hidden="true">
-          <img class="video-category-icon" src="/media/icons/video-camera.png" alt="" />
+          <img class="video-category-icon" src="media/icons/video-camera.png" alt="" />
         </span>
         <span
           ><strong>Videos</strong><small>{{ videoCount }} memories</small></span

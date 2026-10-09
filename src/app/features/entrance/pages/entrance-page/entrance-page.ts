@@ -17,6 +17,7 @@ export class EntrancePage implements AfterViewInit {
   private readonly animations = inject(AnimationService);
   private readonly router = inject(Router);
   readonly content = SITE_CONTENT.entrance;
+  readonly backgroundImageUrl = 'images/couple-cinematic.png';
   readonly errorMessage = signal('');
   readonly hintOpen = signal(false);
   passcode = '';

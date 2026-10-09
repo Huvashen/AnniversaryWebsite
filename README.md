@@ -20,6 +20,17 @@ The date passcode is `12/10/2025` (separators are optional). Change it in
 npm run build
 ```
 
+## Deployment
+
+`Development` is the integration branch and `main` is production. Pushing to `main`
+automatically builds and deploys the site to GitHub Pages at:
+
+`https://huvashen.github.io/AnniversaryWebsite/`
+
+The Pages workflow builds with the repository base path and publishes the browser
+bundle. It also creates a `404.html` fallback so Angular routes continue to work
+when a page is refreshed directly.
+
 ## Architecture
 
 ```text
@@ -54,12 +65,12 @@ Place optimized files under `public/media/` and reference them from
 
 ```ts
 {
-  imageUrl: '/media/our-favourite-day/cover.webp',
+  imageUrl: 'media/our-favourite-day/cover.webp',
   galleryUrls: [
-    '/media/our-favourite-day/photo-02.webp',
-    '/media/our-favourite-day/photo-03.webp',
+    'media/our-favourite-day/photo-02.webp',
+    'media/our-favourite-day/photo-03.webp',
   ],
-  videoUrl: '/media/our-favourite-day/highlight.mp4',
+  videoUrl: 'media/our-favourite-day/highlight.mp4',
 }
 ```
 
