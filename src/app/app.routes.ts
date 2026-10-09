@@ -7,7 +7,7 @@ export const routes: Routes = [
     path: 'intro',
     loadComponent: () =>
       import('./features/intro/pages/intro-page/intro-page').then((module) => module.IntroPage),
-    title: 'Our Story',
+    title: "Yoshvi's Story",
   },
   {
     path: 'welcome',
@@ -16,7 +16,7 @@ export const routes: Routes = [
       import('./features/entrance/pages/entrance-page/entrance-page').then(
         (module) => module.EntrancePage,
       ),
-    title: 'Welcome | Our Story',
+    title: "Welcome | Yoshvi's Story",
   },
   {
     path: 'profiles',
@@ -25,7 +25,7 @@ export const routes: Routes = [
       import('./features/profiles/pages/profile-page/profile-page').then(
         (module) => module.ProfilePage,
       ),
-    title: "Who's watching? | Our Story",
+    title: "Who's watching? | Yoshvi\'s Story",
   },
   {
     path: 'browse',

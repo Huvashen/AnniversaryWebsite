@@ -26,7 +26,7 @@ export class EntrancePage implements AfterViewInit {
   }
   enterStory(): void {
     if (!this.access.unlock(this.passcode)) {
-      this.errorMessage.set('That date does not match our first episode.');
+      this.errorMessage.set('Incorrect date entry.');
       this.animations.shake('.login-card');
       return;
     }
