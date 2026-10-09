@@ -1,0 +1,24 @@
+<button class="media-tile" type="button" (click)="selected.emit(item())">
+  <span class="thumbnail">
+    @if (item(); as media) {
+      @if (media.type === 'image') {
+        <img [src]="media.src" [alt]="media.alt" loading="lazy" />
+      } @else {
+        <video
+          #preview
+          [src]="media.src"
+          muted
+          playsinline
+          preload="metadata"
+          (loadedmetadata)="revealVideoFrame(preview)"
+        ></video>
+        <span class="play-badge" aria-hidden="true"><i></i></span>
+      }
+    }
+    <span class="image-shade"></span>
+  </span>
+  <span class="tile-copy">
+    <strong>{{ title() }}</strong>
+    <small>Year 1</small>
+  </span>
+</button>

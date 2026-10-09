@@ -1,0 +1,72 @@
+:host {
+  display: block;
+}
+.profiles-page {
+  position: relative;
+  display: grid;
+  min-height: 100svh;
+  place-items: center;
+  background: #141414;
+  color: #fff;
+}
+header {
+  position: absolute;
+  inset: 0 0 auto;
+  padding: 1.3rem clamp(1.25rem, 4vw, 3.5rem);
+}
+header span {
+  color: #e50914;
+  font-size: clamp(1.35rem, 3vw, 2rem);
+  font-weight: 950;
+  letter-spacing: -0.08em;
+}
+section {
+  text-align: center;
+}
+h1 {
+  margin: 0 0 2.1rem;
+  font-size: clamp(2.3rem, 6vw, 4.2rem);
+  font-weight: 400;
+  letter-spacing: -0.04em;
+}
+.year-profile {
+  display: grid;
+  gap: 0.85rem;
+  margin: auto;
+  border: 0;
+  background: transparent;
+  color: #808080;
+  cursor: pointer;
+  font-size: 1.15rem;
+}
+.profile-image {
+  display: block;
+  width: clamp(9rem, 18vw, 13rem);
+  aspect-ratio: 1;
+  border: 3px solid transparent;
+  border-radius: 0.25rem;
+  object-fit: cover;
+  object-position: center;
+  box-shadow: 0 1rem 3rem #0006;
+  transition:
+    border-color 0.16s,
+    transform 0.16s;
+}
+.year-profile:hover,
+.year-profile:focus-visible {
+  color: #fff;
+  outline: 0;
+}
+.year-profile:hover .profile-image,
+.year-profile:focus-visible .profile-image {
+  border-color: #fff;
+  transform: scale(1.035);
+}
+@media (max-width: 520px) {
+  h1 {
+    margin-bottom: 1.5rem;
+  }
+  .profile-image {
+    width: 9.5rem;
+  }
+}

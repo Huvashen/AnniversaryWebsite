@@ -1,0 +1,107 @@
+:host {
+  display: block;
+}
+.intro-screen {
+  position: relative;
+  display: grid;
+  min-height: 100svh;
+  place-items: center;
+  overflow: hidden;
+  background: #000;
+  isolation: isolate;
+}
+.red-halo {
+  position: absolute;
+  width: min(48rem, 82vw);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, #e5091438 0, #87050d1c 34%, transparent 70%);
+  filter: blur(1.5rem);
+  opacity: 0;
+}
+.logo-stage {
+  position: relative;
+  z-index: 3;
+  transform-origin: center;
+}
+.logo-mark {
+  position: relative;
+  width: min(58vw, 21rem);
+  overflow: hidden;
+}
+.netflix-n-logo {
+  display: block;
+  width: 100%;
+  height: auto;
+  opacity: 0;
+  transform-origin: bottom;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+.logo-scan {
+  position: absolute;
+  z-index: 2;
+  top: -15%;
+  bottom: -15%;
+  left: 0;
+  width: 12%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #ff5b63aa 42%,
+    #fff 50%,
+    #ff5b63aa 58%,
+    transparent
+  );
+  filter: blur(0.08rem);
+  opacity: 0;
+  mix-blend-mode: screen;
+  transform: skew(-10deg);
+}
+.trail-field {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: clamp(0.55rem, 2.4vw, 2rem);
+  padding-inline: 8vw;
+}
+.red-trail {
+  width: clamp(1px, 0.28vw, 4px);
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    transparent 4%,
+    #540309 18%,
+    #e50914 43%,
+    #ff5962 50%,
+    #e50914 57%,
+    #540309 82%,
+    transparent 96%
+  );
+  box-shadow: 0 0 1rem #e50914;
+  opacity: 0;
+  transform-origin: center;
+}
+.red-trail:nth-child(3n) {
+  width: clamp(2px, 0.55vw, 7px);
+  filter: brightness(0.65);
+}
+.red-trail:nth-child(4n) {
+  filter: brightness(1.6);
+}
+@media (prefers-reduced-motion: reduce) {
+  .netflix-n-logo {
+    opacity: 1;
+  }
+  .trail-field {
+    display: none;
+  }
+}
+@media (max-width: 560px) {
+  .logo-mark {
+    width: min(68vw, 18rem);
+  }
+}

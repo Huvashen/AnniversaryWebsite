@@ -1,0 +1,50 @@
+<main class="signin-page">
+  <div
+    class="backdrop"
+    aria-hidden="true"
+    [style.--backdrop-image]="'url(' + backgroundImageUrl + ')'"
+  ></div>
+  <header><span class="brand">YOSHVI</span></header>
+  <section class="signin-card entrance-reveal" aria-labelledby="signin-title">
+    <h1 id="signin-title">Sign In</h1>
+    <p>When did we start dating?</p>
+    <form (ngSubmit)="enterStory()">
+      <label class="sr-only" for="anniversary-date">Date we started dating</label
+      ><input
+        id="anniversary-date"
+        name="anniversary-date"
+        type="text"
+        inputmode="numeric"
+        autocomplete="off"
+        placeholder="DD / MM / YYYY"
+        [(ngModel)]="passcode"
+        [attr.aria-invalid]="errorMessage() ? true : null"
+      />
+      @if (errorMessage()) {
+        <p class="error" role="alert">{{ errorMessage() }}</p>
+      }
+      <button class="signin-button" type="submit">Sign In</button
+      ><button class="hint-link" type="button" (click)="showHint()">Need a hint?</button>
+    </form>
+  </section>
+  @if (hintOpen()) {
+    <div class="hint-backdrop" role="presentation" (click)="closeHint()">
+      <section
+        class="hint-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="hint-title"
+        (click)="$event.stopPropagation()"
+      >
+        <button class="modal-close" type="button" aria-label="Close" (click)="closeHint()">
+          ×
+        </button>
+        <span class="hint-brand" aria-hidden="true">N</span>
+        <p class="hint-eyebrow">Need a hint?</p>
+        <h2 id="hint-title">One more clue</h2>
+        <p class="hint-copy">{{ content.passcodeHint }}</p>
+        <button class="hint-confirm" type="button" (click)="closeHint()">Got it</button>
+      </section>
+    </div>
+  }
+</main>

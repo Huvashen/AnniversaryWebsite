@@ -1,0 +1,46 @@
+<section class="media-row">
+  <header>
+    <h2>{{ title() }}</h2>
+    <a routerLink="/memories" [queryParams]="{ type: type() }">
+      Explore all <span class="link-arrow" aria-hidden="true"></span>
+    </a>
+  </header>
+  <div class="rail-shell">
+    <button
+      class="rail-control previous"
+      type="button"
+      [attr.aria-label]="'Scroll ' + title() + ' backward'"
+      (click)="scrollRail(rail, -1)"
+    >
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="m14.5 6-6 6 6 6" />
+      </svg>
+    </button>
+    <div #rail class="rail">
+      @for (item of items(); track item.id; let position = $index) {
+        <app-media-tile
+          [item]="item"
+          [position]="position + 1"
+          (selected)="mediaSelected.emit($event)"
+        />
+      }
+      @if (showExploreAll()) {
+        <a class="see-all-card" routerLink="/memories" [queryParams]="{ type: type() }">
+          <span class="circle-arrow" aria-hidden="true"><i></i></span>
+          <strong>Explore all {{ type() === 'image' ? 'photos' : 'videos' }}</strong>
+          <small>Open the complete Year 1 collection</small>
+        </a>
+      }
+    </div>
+    <button
+      class="rail-control next"
+      type="button"
+      [attr.aria-label]="'Scroll ' + title() + ' forward'"
+      (click)="scrollRail(rail, 1)"
+    >
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="m9.5 6 6 6-6 6" />
+      </svg>
+    </button>
+  </div>
+</section>

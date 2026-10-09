@@ -1,0 +1,17 @@
+<main class="intro-screen">
+  <audio #introAudio autoplay preload="auto" src="audio/yoshvis-story-intro.mp3"></audio>
+  <div class="red-halo" aria-hidden="true"></div>
+  <div class="trail-field" aria-hidden="true">
+    @for (trail of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18]; track trail) {
+      <span class="red-trail"></span>
+    }
+  </div>
+  <div class="logo-stage" aria-label="Red N logo">
+    <div class="logo-mark">
+      <img class="netflix-n-logo" src="images/yoshvis-story-n.png" alt="Red N" /><span
+        class="logo-scan"
+        aria-hidden="true"
+      ></span>
+    </div>
+  </div>
+</main>

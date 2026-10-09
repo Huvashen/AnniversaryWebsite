@@ -1,0 +1,205 @@
+:host {
+  display: block;
+}
+.signin-page {
+  position: relative;
+  display: grid;
+  min-height: 100svh;
+  place-items: center;
+  overflow: hidden;
+  background: #000;
+  color: #fff;
+}
+.backdrop {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(#0009, #000a),
+    var(--backdrop-image) center/cover no-repeat;
+}
+.backdrop:after {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, #0008, transparent 50%, #0005);
+  content: '';
+}
+header {
+  position: absolute;
+  z-index: 2;
+  inset: 0 0 auto;
+  padding: 1.5rem clamp(1.25rem, 4vw, 3.5rem);
+}
+.brand {
+  color: #e50914;
+  font-size: clamp(1.7rem, 4vw, 2.8rem);
+  font-weight: 950;
+  letter-spacing: -0.08em;
+}
+.signin-card {
+  position: relative;
+  z-index: 3;
+  width: min(calc(100% - 2rem), 28rem);
+  padding: clamp(2rem, 5vw, 3.5rem);
+  border-radius: 0.25rem;
+  background: #000d;
+  box-shadow: 0 1rem 4rem #0008;
+}
+.signin-card h1 {
+  margin: 0 0 1rem;
+  font-size: 2rem;
+}
+.signin-card > p {
+  margin: 0 0 1rem;
+  color: #ddd;
+  font-size: 0.95rem;
+}
+form {
+  display: flex;
+  flex-direction: column;
+}
+input {
+  width: 100%;
+  border: 0;
+  border-radius: 0.2rem;
+  outline: 0;
+  background: #333;
+  color: #fff;
+  padding: 1rem;
+}
+input:focus {
+  background: #454545;
+  box-shadow: inset 0 -2px #e87c03;
+}
+.signin-button {
+  margin-top: 1.5rem;
+  border: 0;
+  border-radius: 0.2rem;
+  background: #e50914;
+  color: #fff;
+  padding: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+.hint-link {
+  align-self: flex-end;
+  margin-top: 0.8rem;
+  border: 0;
+  background: transparent;
+  color: #b3b3b3;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+.hint-link:hover {
+  text-decoration: underline;
+}
+.error {
+  margin: 0.6rem 0 0;
+  color: #e87c03;
+  font-size: 0.78rem;
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+}
+.hint-backdrop {
+  position: fixed;
+  z-index: 20;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  background: #000e;
+  backdrop-filter: blur(8px);
+}
+.hint-modal {
+  position: relative;
+  width: min(100%, 29rem);
+  overflow: hidden;
+  padding: 2.75rem 2.5rem 2.4rem;
+  border: 1px solid #ffffff1a;
+  border-radius: 0.45rem;
+  background: radial-gradient(circle at 50% -25%, #e509143d, transparent 15rem), #181818;
+  box-shadow: 0 2rem 7rem #000;
+  text-align: center;
+}
+.hint-modal:before {
+  position: absolute;
+  inset: 0 0 auto;
+  height: 0.28rem;
+  background: #e50914;
+  content: '';
+}
+.hint-modal h2 {
+  margin: 0.35rem 0 1rem;
+  font-size: clamp(1.8rem, 5vw, 2.35rem);
+  letter-spacing: -0.04em;
+}
+.hint-brand {
+  display: block;
+  color: #e50914;
+  font-size: 2.6rem;
+  font-weight: 950;
+  letter-spacing: -0.14em;
+  line-height: 1;
+}
+.hint-eyebrow {
+  margin: 1rem 0 0;
+  color: #aaa;
+  font-size: 0.68rem;
+  font-weight: 750;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+.hint-copy {
+  margin: 0;
+  color: #d8d3d4;
+  font-size: 1rem;
+  line-height: 1.55;
+}
+.hint-confirm {
+  width: 100%;
+  margin-top: 1.65rem;
+  border: 0;
+  border-radius: 0.2rem;
+  background: #e50914;
+  color: #fff;
+  padding: 0.85rem 1rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+.hint-confirm:hover {
+  background: #f6121d;
+}
+.modal-close {
+  position: absolute;
+  top: 0.65rem;
+  right: 0.65rem;
+  border: 0;
+  background: transparent;
+  color: #c8c8c8;
+  cursor: pointer;
+  font-size: 1.6rem;
+}
+.modal-close:hover {
+  color: #fff;
+}
+@media (max-width: 560px) {
+  .signin-page {
+    place-items: end center;
+  }
+  .signin-card {
+    width: 100%;
+    padding: 2rem 1.5rem 4rem;
+    background: #000;
+    border-radius: 0;
+  }
+  .backdrop {
+    opacity: 0.38;
+  }
+  header {
+    background: linear-gradient(#000, transparent);
+  }
+}

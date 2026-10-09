@@ -1,0 +1,74 @@
+<main id="memories" class="memories-page">
+  <app-site-header />
+  <div class="library-shell">
+    <aside aria-label="Memory type">
+      <p>Browse</p>
+      <button type="button" [class.active]="activeType() === 'image'" (click)="selectType('image')">
+        <span class="category-icon" aria-hidden="true">
+          <img class="photo-category-icon" src="media/icons/photos.png" alt="" />
+        </span>
+        <span
+          ><strong>Photos</strong><small>{{ imageCount }} memories</small></span
+        >
+      </button>
+      <button type="button" [class.active]="activeType() === 'video'" (click)="selectType('video')">
+        <span class="category-icon" aria-hidden="true">
+          <img class="video-category-icon" src="media/icons/video-camera.png" alt="" />
+        </span>
+        <span
+          ><strong>Videos</strong><small>{{ videoCount }} memories</small></span
+        >
+      </button>
+    </aside>
+
+    <section class="library-content" aria-live="polite">
+      <header>
+        <p>Year 1 collection</p>
+        <h1>{{ activeType() === 'image' ? 'Our Photos' : 'Our Videos' }}</h1>
+        <span
+          >Every {{ activeType() === 'image' ? 'photo' : 'video' }} from our story, together in one
+          place.</span
+        >
+      </header>
+
+      <div class="media-grid">
+        @for (item of visibleMedia(); track item.id; let position = $index) {
+          <app-media-tile [item]="item" [position]="position + 1" (selected)="openMedia($event)" />
+        }
+      </div>
+
+      <div #loadTrigger class="load-trigger" [class.complete]="!hasMore()">
+        @if (hasMore()) {
+          <span></span><small>Loading more memories</small>
+        } @else {
+          <small>You’ve reached the end of the collection.</small>
+        }
+      </div>
+    </section>
+  </div>
+
+  <footer class="asset-credits">
+    Icons by
+    <a href="https://www.flaticon.com/free-icons/art" target="_blank" rel="noreferrer"
+      >Kiranshastry</a
+    >
+    and
+    <a
+      href="https://www.flaticon.com/free-icons/info"
+      title="info icons"
+      target="_blank"
+      rel="noreferrer"
+      >Magnific</a
+    >
+    via
+    <a href="https://www.flaticon.com/free-icons/video-camera" target="_blank" rel="noreferrer"
+      >Flaticon</a
+    >
+  </footer>
+
+  @if (selectedIndex(); as index) {
+    <app-media-gallery-viewer [items]="media()" [startIndex]="index" (closed)="closeViewer()" />
+  } @else if (selectedIndex() === 0) {
+    <app-media-gallery-viewer [items]="media()" [startIndex]="0" (closed)="closeViewer()" />
+  }
+</main>

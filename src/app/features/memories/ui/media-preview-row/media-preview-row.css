@@ -1,0 +1,191 @@
+.media-row {
+  margin-top: clamp(2.2rem, 5vw, 4.5rem);
+}
+
+.rail-shell {
+  position: relative;
+}
+
+header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.8rem;
+}
+
+h2 {
+  margin: 0;
+  color: #f0f0f0;
+  font-size: clamp(1.2rem, 2vw, 1.65rem);
+  font-weight: 650;
+  letter-spacing: -0.025em;
+}
+
+header a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: #b8b8b8;
+  font-size: 0.75rem;
+  font-weight: 650;
+  text-decoration: none;
+  transition: color 160ms ease;
+}
+
+header a:hover,
+header a:focus-visible {
+  color: #fff;
+}
+
+.link-arrow,
+.circle-arrow i {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-top: 2px solid currentColor;
+  border-right: 2px solid currentColor;
+  transform: rotate(45deg);
+}
+
+.rail {
+  display: grid;
+  grid-auto-columns: calc(25% - 0.675rem);
+  grid-auto-flow: column;
+  gap: 0.9rem;
+  overflow-x: auto;
+  padding: 0.55rem 0 2rem;
+  overscroll-behavior-inline: contain;
+  scroll-behavior: smooth;
+  scroll-snap-type: x proximity;
+  scrollbar-width: none;
+}
+
+.rail::-webkit-scrollbar {
+  display: none;
+}
+
+app-media-tile,
+.see-all-card {
+  scroll-snap-align: start;
+}
+
+.rail-control {
+  position: absolute;
+  z-index: 5;
+  top: calc(50% - 0.75rem);
+  display: grid;
+  width: 2.8rem;
+  aspect-ratio: 1;
+  place-items: center;
+  border: 1px solid #ffffff70;
+  border-radius: 50%;
+  background: #141414e6;
+  color: #fff;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(-50%);
+  transition:
+    background 160ms ease,
+    border-color 160ms ease,
+    opacity 160ms ease,
+    transform 160ms ease;
+}
+
+.rail-control.previous {
+  left: 0.65rem;
+}
+
+.rail-control.next {
+  right: 0.65rem;
+}
+
+.rail-control svg {
+  width: 1.55rem;
+  height: 1.55rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.rail-shell:hover .rail-control,
+.rail-control:focus-visible {
+  opacity: 1;
+}
+
+.rail-control:hover,
+.rail-control:focus-visible {
+  border-color: #fff;
+  outline: 0;
+  background: #2a2a2af2;
+  transform: translateY(-50%) scale(1.08);
+}
+
+.see-all-card {
+  display: flex;
+  min-height: 100%;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 1.5rem;
+  border: 1px solid #ffffff21;
+  border-radius: 0.3rem;
+  background: linear-gradient(145deg, #1e1e1e, #111);
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+  transition:
+    background 180ms ease,
+    border-color 180ms ease,
+    transform 180ms ease;
+}
+
+.circle-arrow {
+  display: grid;
+  width: 3rem;
+  aspect-ratio: 1;
+  place-items: center;
+  margin-bottom: 0.8rem;
+  border: 2px solid #eee;
+  border-radius: 50%;
+}
+
+.circle-arrow i {
+  margin-left: -0.15rem;
+}
+
+.see-all-card strong {
+  font-size: 0.9rem;
+}
+
+.see-all-card small {
+  max-width: 12rem;
+  margin-top: 0.4rem;
+  color: #888;
+  font-size: 0.68rem;
+  line-height: 1.4;
+}
+
+.see-all-card:hover,
+.see-all-card:focus-visible {
+  border-color: #fff;
+  outline: 0;
+  background: #252525;
+  transform: translateY(-0.35rem);
+}
+
+@media (max-width: 560px) {
+  header a {
+    font-size: 0.7rem;
+  }
+
+  .rail {
+    grid-auto-columns: min(78vw, 18rem);
+    gap: 0.65rem;
+  }
+
+  .rail-control {
+    display: none;
+  }
+}

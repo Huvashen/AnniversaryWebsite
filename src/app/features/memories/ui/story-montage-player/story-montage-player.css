@@ -1,0 +1,289 @@
+:host {
+  position: relative;
+  z-index: 2;
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: #000;
+}
+
+.montage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #000;
+}
+
+.media {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  object-position: center;
+  background: #000;
+  animation: media-in 420ms ease-out both;
+}
+
+.shade {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, #0008 0, transparent 22%),
+    linear-gradient(0deg, #000b 0, transparent 30%);
+  pointer-events: none;
+}
+
+.identity {
+  position: absolute;
+  top: 1.15rem;
+  left: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  color: #fff;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.identity span {
+  color: #e50914;
+}
+
+.identity strong {
+  color: #ffffffb8;
+  font: inherit;
+}
+
+button {
+  display: grid;
+  place-items: center;
+  border: 1px solid #ffffff70;
+  border-radius: 50%;
+  background: #111b;
+  color: #fff;
+  cursor: pointer;
+  transition:
+    border-color 160ms ease,
+    background 160ms ease,
+    transform 160ms ease;
+}
+
+button:hover,
+button:focus-visible {
+  border-color: #fff;
+  background: #202020ed;
+  transform: scale(1.08);
+}
+
+.icon {
+  display: block;
+  width: 1.5rem;
+  height: 1.5rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.filled-icon {
+  fill: currentColor;
+  stroke: none;
+}
+
+.skip {
+  position: absolute;
+  top: 50%;
+  width: 2.65rem;
+  aspect-ratio: 1;
+  opacity: 0;
+  transform: translateY(-50%);
+}
+
+.skip-icon {
+  width: 1.65rem;
+  height: 1.65rem;
+  stroke-width: 2;
+}
+
+.montage:hover .skip,
+.skip:focus-visible {
+  opacity: 1;
+}
+
+.skip:hover,
+.skip:focus-visible {
+  transform: translateY(-50%) scale(1.08);
+}
+
+.previous {
+  left: 1rem;
+}
+
+.next {
+  right: 1rem;
+}
+
+.controls {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  align-items: center;
+  gap: clamp(1rem, 4vw, 3rem);
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: opacity 180ms ease;
+}
+
+.montage:hover .controls,
+.montage.controls-visible .controls,
+.montage.is-paused .controls,
+.montage:has(.controls button:focus-visible) .controls {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.controls button {
+  width: clamp(3rem, 5vw, 3.8rem);
+  aspect-ratio: 1;
+  border: 0;
+  background: #0808088f;
+  backdrop-filter: blur(5px);
+  box-shadow: 0 0.35rem 1.5rem #0008;
+}
+
+.controls .seek {
+  position: relative;
+}
+
+.seek-icon {
+  width: 2.25rem;
+  height: 2.25rem;
+  stroke-width: 1.55;
+}
+
+.controls .play-toggle {
+  width: clamp(4rem, 7vw, 5rem);
+  background: #f5f5f5;
+  color: #111;
+}
+
+.controls .play-toggle:hover,
+.controls .play-toggle:focus-visible {
+  background: #fff;
+}
+
+.play-icon {
+  width: clamp(1.65rem, 3vw, 2.15rem);
+  height: clamp(1.65rem, 3vw, 2.15rem);
+}
+
+.seek-value {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  color: #fff;
+  font-size: 0.58rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  transform: translate(-50%, -18%);
+}
+
+.mute-toggle {
+  position: absolute;
+  z-index: 2;
+  right: 1.25rem;
+  bottom: 1.5rem;
+  width: 2.5rem;
+  aspect-ratio: 1;
+}
+
+.volume-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.progress-track {
+  position: absolute;
+  z-index: 2;
+  right: 4.5rem;
+  bottom: 1.65rem;
+  left: 1.25rem;
+  height: 0.24rem;
+  overflow: hidden;
+  border-radius: 99rem;
+  background: #ffffff30;
+}
+
+.progress-track span {
+  display: block;
+  height: 100%;
+  background: #e50914;
+  transition: width 80ms linear;
+}
+
+@keyframes media-in {
+  from {
+    opacity: 0;
+    transform: scale(1.015);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (max-width: 560px) {
+  .identity {
+    top: 0.9rem;
+    left: 0.9rem;
+  }
+
+  .skip {
+    width: 2.35rem;
+    opacity: 0.85;
+  }
+
+  .previous {
+    left: 0.65rem;
+  }
+
+  .next {
+    right: 0.65rem;
+  }
+
+  .controls {
+    gap: clamp(0.75rem, 4vw, 1.25rem);
+  }
+
+  .controls button {
+    width: 2.75rem;
+  }
+
+  .controls .play-toggle {
+    width: 3.5rem;
+  }
+
+  .mute-toggle {
+    right: 0.8rem;
+    bottom: 1rem;
+    width: 2.15rem;
+  }
+
+  .progress-track {
+    right: 3.7rem;
+    bottom: 1.2rem;
+    left: 0.8rem;
+  }
+}

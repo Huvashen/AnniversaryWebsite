@@ -1,0 +1,21 @@
+<button
+  class="memory-card"
+  type="button"
+  [style.--card-accent]="memory().accent"
+  (click)="selected.emit(memory())"
+>
+  <span
+    class="artwork"
+    [style.background-image]="memory().imageUrl ? 'url(' + memory().imageUrl + ')' : null"
+    ><span class="shade"></span><span class="episode">{{ memory().date }}</span
+    ><span class="play">▶</span><span class="title">{{ memory().title }}</span></span
+  >
+  <span class="details"
+    ><span class="meta"
+      ><b>▶</b><strong>100% ours</strong>
+      @if (memory().duration) {
+        <i>{{ memory().duration }}</i>
+      }</span
+    ><span>{{ memory().description }}</span></span
+  >
+</button>
