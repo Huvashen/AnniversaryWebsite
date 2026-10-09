@@ -15,5 +15,10 @@ export class MediaPreviewRow {
   readonly title = input.required<string>();
   readonly type = input.required<MediaLibraryType>();
   readonly items = input.required<readonly StoryMediaItem[]>();
+  readonly showExploreAll = input(false);
   readonly mediaSelected = output<StoryMediaItem>();
+
+  scrollRail(rail: HTMLElement, direction: -1 | 1): void {
+    rail.scrollBy({ left: direction * rail.clientWidth * 0.9, behavior: 'smooth' });
+  }
 }

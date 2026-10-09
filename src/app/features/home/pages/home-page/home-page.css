@@ -14,6 +14,7 @@
   display: flex;
   min-height: min(88svh, 58rem);
   align-items: center;
+  overflow: hidden;
   isolation: isolate;
 }
 
@@ -22,7 +23,7 @@
   z-index: -3;
   inset: 0;
   background: #111;
-  background-position: center 42%;
+  background-position: center 16%;
   background-size: cover;
   transform: scale(1.015);
 }
@@ -159,6 +160,7 @@ h1 {
   z-index: 3;
   padding: 0 clamp(1.25rem, 4vw, 4rem) 5rem;
   margin-top: clamp(-6rem, -7vw, -2.5rem);
+  background: #0b0b0b;
 }
 
 .coming-soon {
