@@ -9,7 +9,7 @@ import {
   signal,
 } from '@angular/core';
 import { StoryMediaItem } from '../../../../shared/models/story-media.model';
-import { mediaKind, mediaTitle } from '../../data-access/media-library.catalog';
+import { mediaTitle } from '../../data-access/media-library.catalog';
 
 @Component({
   selector: 'app-media-gallery-viewer',
@@ -24,7 +24,8 @@ export class MediaGalleryViewer implements OnInit {
   readonly activeIndex = signal(0);
   readonly activeItem = computed(() => this.items()[this.activeIndex()]);
   readonly title = computed(() => mediaTitle(this.activeItem().type, this.activeIndex() + 1));
-  readonly kind = computed(() => mediaKind(this.activeItem().type));
+  readonly itemNumber = computed(() => String(this.activeIndex() + 1).padStart(2, '0'));
+  readonly itemTotal = computed(() => String(this.items().length).padStart(2, '0'));
 
   ngOnInit(): void {
     this.activeIndex.set(this.clampIndex(this.startIndex()));
