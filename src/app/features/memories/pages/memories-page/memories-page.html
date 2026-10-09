@@ -19,14 +19,6 @@
           ><strong>Videos</strong><small>{{ videoCount }} memories</small></span
         >
       </button>
-      <div class="icon-attribution">
-        <a href="https://www.flaticon.com/free-icons/art" target="_blank" rel="noreferrer">
-          Art icons created by Kiranshastry - Flaticon
-        </a>
-        <a href="https://www.flaticon.com/free-icons/video-camera" target="_blank" rel="noreferrer">
-          Video camera icons created by Kiranshastry - Flaticon
-        </a>
-      </div>
     </aside>
 
     <section class="library-content" aria-live="polite">
@@ -54,6 +46,17 @@
       </div>
     </section>
   </div>
+
+  <footer class="asset-credits">
+    Icons by
+    <a href="https://www.flaticon.com/free-icons/art" target="_blank" rel="noreferrer"
+      >Kiranshastry</a
+    >
+    via
+    <a href="https://www.flaticon.com/free-icons/video-camera" target="_blank" rel="noreferrer"
+      >Flaticon</a
+    >
+  </footer>
 
   @if (selectedIndex(); as index) {
     <app-media-gallery-viewer [items]="media()" [startIndex]="index" (closed)="closeViewer()" />
