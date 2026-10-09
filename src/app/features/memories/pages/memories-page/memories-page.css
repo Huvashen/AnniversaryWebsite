@@ -82,7 +82,6 @@ aside small {
 }
 
 .category-icon {
-  position: relative;
   display: grid;
   width: 2.15rem;
   aspect-ratio: 1;
@@ -92,43 +91,35 @@ aside small {
   background: #262626;
 }
 
-.photo-icon::before {
-  width: 1rem;
-  height: 0.75rem;
-  border: 1.5px solid currentColor;
-  border-radius: 0.12rem;
-  content: '';
+.category-icon img {
+  display: block;
+  width: 1.35rem;
+  height: 1.35rem;
+  object-fit: contain;
 }
 
-.photo-icon::after {
-  position: absolute;
-  right: 0.56rem;
-  bottom: 0.61rem;
-  width: 0.55rem;
-  height: 0.55rem;
-  border-left: 1.5px solid currentColor;
-  border-bottom: 1.5px solid currentColor;
-  content: '';
-  transform: rotate(45deg) skew(-8deg, -8deg);
+.video-category-icon {
+  filter: invert(1);
 }
 
-.video-icon::before {
-  width: 1rem;
-  height: 0.75rem;
-  border: 1.5px solid currentColor;
-  border-radius: 0.12rem;
-  content: '';
+.icon-attribution {
+  display: grid;
+  gap: 0.25rem;
+  margin: 0.8rem 0.65rem 0;
+  padding-top: 0.7rem;
+  border-top: 1px solid #ffffff0d;
 }
 
-.video-icon::after {
-  position: absolute;
-  right: 0.42rem;
-  width: 0;
-  height: 0;
-  border-top: 0.28rem solid transparent;
-  border-bottom: 0.28rem solid transparent;
-  border-left: 0.38rem solid currentColor;
-  content: '';
+.icon-attribution a {
+  color: #5f5f5f;
+  font-size: 0.52rem;
+  line-height: 1.35;
+  text-decoration: none;
+}
+
+.icon-attribution a:hover,
+.icon-attribution a:focus-visible {
+  color: #aaa;
 }
 
 .library-content > header {
@@ -208,6 +199,10 @@ h1 {
   }
 
   aside > p {
+    display: none;
+  }
+
+  .icon-attribution {
     display: none;
   }
 

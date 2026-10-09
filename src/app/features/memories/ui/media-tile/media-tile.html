@@ -15,11 +15,13 @@
         <span class="play-badge" aria-hidden="true"><i></i></span>
       }
     }
-    <span class="type-badge">{{ kind() }}</span>
+    @if (item().type === 'video') {
+      <span class="type-badge">Video</span>
+    }
     <span class="image-shade"></span>
   </span>
   <span class="tile-copy">
     <strong>{{ title() }}</strong>
-    <small>Year 1 · {{ kind() }}</small>
+    <small>Year 1{{ item().type === 'video' ? ' · Video' : '' }}</small>
   </span>
 </button>
