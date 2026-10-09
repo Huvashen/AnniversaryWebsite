@@ -28,6 +28,7 @@ const MEDIA_PREVIEW_LIMIT = 4;
 export class HomePage implements AfterViewInit {
   private readonly animations = inject(AnimationService);
   readonly featured = FEATURED_MEMORY;
+  readonly heroImageUrl = '/media/story-montage/images/072-img-4860.jpg';
   readonly imagePreview = STORY_IMAGES.slice(0, MEDIA_PREVIEW_LIMIT);
   readonly videoPreview = STORY_VIDEOS.slice(0, MEDIA_PREVIEW_LIMIT);
   readonly hasMoreImages = STORY_IMAGES.length > this.imagePreview.length;
