@@ -2,6 +2,10 @@
   margin-top: clamp(2.2rem, 5vw, 4.5rem);
 }
 
+.rail-shell {
+  position: relative;
+}
+
 header {
   display: flex;
   align-items: baseline;
@@ -45,11 +49,13 @@ header a:focus-visible {
 
 .rail {
   display: grid;
-  grid-auto-columns: clamp(14.5rem, 24vw, 20rem);
+  grid-auto-columns: calc(25% - 0.675rem);
   grid-auto-flow: column;
-  gap: clamp(0.65rem, 1.2vw, 0.95rem);
+  gap: 0.9rem;
   overflow-x: auto;
   padding: 0.55rem 0 2rem;
+  overscroll-behavior-inline: contain;
+  scroll-behavior: smooth;
   scroll-snap-type: x proximity;
   scrollbar-width: none;
 }
@@ -61,6 +67,59 @@ header a:focus-visible {
 app-media-tile,
 .see-all-card {
   scroll-snap-align: start;
+}
+
+.rail-control {
+  position: absolute;
+  z-index: 5;
+  top: calc(50% - 0.75rem);
+  display: grid;
+  width: 2.8rem;
+  aspect-ratio: 1;
+  place-items: center;
+  border: 1px solid #ffffff70;
+  border-radius: 50%;
+  background: #141414e6;
+  color: #fff;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(-50%);
+  transition:
+    background 160ms ease,
+    border-color 160ms ease,
+    opacity 160ms ease,
+    transform 160ms ease;
+}
+
+.rail-control.previous {
+  left: 0.65rem;
+}
+
+.rail-control.next {
+  right: 0.65rem;
+}
+
+.rail-control svg {
+  width: 1.55rem;
+  height: 1.55rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.rail-shell:hover .rail-control,
+.rail-control:focus-visible {
+  opacity: 1;
+}
+
+.rail-control:hover,
+.rail-control:focus-visible {
+  border-color: #fff;
+  outline: 0;
+  background: #2a2a2af2;
+  transform: translateY(-50%) scale(1.08);
 }
 
 .see-all-card {
@@ -123,5 +182,10 @@ app-media-tile,
 
   .rail {
     grid-auto-columns: min(78vw, 18rem);
+    gap: 0.65rem;
+  }
+
+  .rail-control {
+    display: none;
   }
 }

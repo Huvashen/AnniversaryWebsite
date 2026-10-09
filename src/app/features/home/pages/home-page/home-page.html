@@ -28,12 +28,14 @@
       title="Photos from Year 1"
       type="image"
       [items]="imagePreview"
+      [showExploreAll]="hasMoreImages"
       (mediaSelected)="openMedia($event)"
     />
     <app-media-preview-row
       title="Videos from Year 1"
       type="video"
       [items]="videoPreview"
+      [showExploreAll]="hasMoreVideos"
       (mediaSelected)="openMedia($event)"
     />
   </section>

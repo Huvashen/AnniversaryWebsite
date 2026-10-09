@@ -16,6 +16,8 @@ import { MediaGalleryViewer } from '../../../memories/ui/media-gallery-viewer/me
 import { MediaPreviewRow } from '../../../memories/ui/media-preview-row/media-preview-row';
 import { MemoryViewer } from '../../../memories/ui/memory-viewer/memory-viewer';
 
+const MEDIA_PREVIEW_LIMIT = 4;
+
 @Component({
   selector: 'app-home-page',
   imports: [SiteHeader, MediaPreviewRow, MemoryViewer, MediaGalleryViewer],
@@ -26,8 +28,10 @@ import { MemoryViewer } from '../../../memories/ui/memory-viewer/memory-viewer';
 export class HomePage implements AfterViewInit {
   private readonly animations = inject(AnimationService);
   readonly featured = FEATURED_MEMORY;
-  readonly imagePreview = STORY_IMAGES.slice(0, 12);
-  readonly videoPreview = STORY_VIDEOS;
+  readonly imagePreview = STORY_IMAGES.slice(0, MEDIA_PREVIEW_LIMIT);
+  readonly videoPreview = STORY_VIDEOS.slice(0, MEDIA_PREVIEW_LIMIT);
+  readonly hasMoreImages = STORY_IMAGES.length > this.imagePreview.length;
+  readonly hasMoreVideos = STORY_VIDEOS.length > this.videoPreview.length;
   readonly selectedMemory = signal<Memory | null>(null);
   readonly selectedMediaIndex = signal<number | null>(null);
   readonly selectedMediaCollection = signal<readonly StoryMediaItem[]>([]);
