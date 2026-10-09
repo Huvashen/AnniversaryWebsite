@@ -143,16 +143,10 @@ h1 {
 }
 
 .info-icon {
-  display: grid;
   width: 1.35rem;
-  aspect-ratio: 1;
-  place-items: center;
-  border: 2px solid currentColor;
-  border-radius: 50%;
-  font-family: Georgia, serif;
-  font-size: 0.88rem;
-  font-weight: 700;
-  line-height: 1;
+  height: 1.35rem;
+  object-fit: contain;
+  filter: invert(1);
 }
 
 .catalogue {
